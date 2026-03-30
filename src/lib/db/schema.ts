@@ -1,4 +1,9 @@
 import { pgTable, uuid, text, date, boolean, timestamp, integer, jsonb, uniqueIndex } from "drizzle-orm/pg-core";
+import { randomBytes } from "crypto";
+
+export function generateCheckinToken(): string {
+  return randomBytes(32).toString("hex");
+}
 
 export const users = pgTable("users", {
   id: uuid("id").defaultRandom().primaryKey(),
@@ -8,6 +13,7 @@ export const users = pgTable("users", {
   trekEnd: date("trek_end"),
   timezone: text("timezone").default("America/Chicago").notNull(),
   optedIn: boolean("opted_in").default(true).notNull(),
+  checkinToken: text("checkin_token").unique(),
   createdAt: timestamp("created_at").defaultNow().notNull(),
 });
 

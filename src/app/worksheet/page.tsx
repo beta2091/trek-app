@@ -208,7 +208,7 @@ export default function WorksheetPage() {
 
   function saveTrek() {
     localStorage.setItem("trek-worksheet", JSON.stringify(worksheet));
-    router.push("/");
+    router.push("/opt-in");
   }
 
   const bestInfo = FOOTPRINTS.find((f) => f.key === worksheet.reach.footprint)!;

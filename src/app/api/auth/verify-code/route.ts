@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { checkVerification } from "@/lib/twilio";
 import { db } from "@/lib/db";
-import { users } from "@/lib/db/schema";
+import { users, generateCheckinToken } from "@/lib/db/schema";
 import { eq } from "drizzle-orm";
 
 export async function POST(req: NextRequest) {
@@ -41,6 +41,7 @@ export async function POST(req: NextRequest) {
         trekStart: trekStart || null,
         trekEnd: trekEnd || null,
         timezone: timezone || "America/Chicago",
+        checkinToken: generateCheckinToken(),
       })
       .returning();
 
