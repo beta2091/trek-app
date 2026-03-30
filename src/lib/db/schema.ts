@@ -1,4 +1,4 @@
-import { pgTable, uuid, text, date, boolean, timestamp, integer, jsonb, uniqueIndex } from "drizzle-orm/pg-core";
+import { pgTable, uuid, text, date, boolean, timestamp, integer, jsonb, uniqueIndex, index } from "drizzle-orm/pg-core";
 import { randomBytes } from "crypto";
 
 export function generateCheckinToken(): string {
@@ -38,5 +38,22 @@ export const dailyCheckins = pgTable(
   },
   (table) => [
     uniqueIndex("checkin_user_day_idx").on(table.userId, table.trekDay),
+  ]
+);
+
+export const smsLogs = pgTable(
+  "sms_logs",
+  {
+    id: uuid("id").defaultRandom().primaryKey(),
+    userId: uuid("user_id")
+      .references(() => users.id, { onDelete: "cascade" })
+      .notNull(),
+    trekDay: integer("trek_day").notNull(),
+    sentDate: date("sent_date").notNull(),
+    twilioSid: text("twilio_sid"),
+    sentAt: timestamp("sent_at").defaultNow().notNull(),
+  },
+  (table) => [
+    index("sms_log_user_date_idx").on(table.userId, table.sentDate),
   ]
 );
