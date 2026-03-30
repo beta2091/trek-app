@@ -2,15 +2,12 @@
 
 import { useState, useMemo, useCallback, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { QUESTIONS, DIMENSIONS, type TrekDimension } from "@/lib/trek-data";
-
-const SCALE_LABELS = [
-  "Not at all",
-  "Rarely",
-  "Sometimes",
-  "Often",
-  "Almost always",
-];
+import {
+  QUESTIONS,
+  FOOTPRINTS,
+  ANSWER_OPTIONS,
+  type Footprint,
+} from "@/lib/trek-data";
 
 export default function QuestionnairePage() {
   const router = useRouter();
@@ -20,35 +17,33 @@ export default function QuestionnairePage() {
 
   const question = QUESTIONS[currentIndex];
   const totalQuestions = QUESTIONS.length;
-  const progress = ((currentIndex) / totalQuestions) * 100;
+  const progress = (currentIndex / totalQuestions) * 100;
 
-  const currentDimension = useMemo(
-    () => DIMENSIONS.find((d) => d.key === question.dimension)!,
-    [question.dimension]
+  const currentFootprint = useMemo(
+    () => FOOTPRINTS.find((f) => f.key === question.footprint)!,
+    [question.footprint]
   );
 
-  // Group questions by dimension to show dimension transitions
-  const isNewDimension = useMemo(() => {
+  const isNewFootprint = useMemo(() => {
     if (currentIndex === 0) return true;
-    return QUESTIONS[currentIndex - 1].dimension !== question.dimension;
-  }, [currentIndex, question.dimension]);
+    return QUESTIONS[currentIndex - 1].footprint !== question.footprint;
+  }, [currentIndex, question.footprint]);
 
-  const [showDimensionIntro, setShowDimensionIntro] = useState(true);
+  const [showFootprintIntro, setShowFootprintIntro] = useState(true);
 
   useEffect(() => {
-    if (isNewDimension) {
-      setShowDimensionIntro(true);
-      const timer = setTimeout(() => setShowDimensionIntro(false), 2000);
+    if (isNewFootprint) {
+      setShowFootprintIntro(true);
+      const timer = setTimeout(() => setShowFootprintIntro(false), 2000);
       return () => clearTimeout(timer);
     } else {
-      setShowDimensionIntro(false);
+      setShowFootprintIntro(false);
     }
-  }, [isNewDimension, currentIndex]);
+  }, [isNewFootprint, currentIndex]);
 
   const selectAnswer = useCallback(
     (value: number) => {
       setResponses((prev) => ({ ...prev, [question.id]: value }));
-      // Auto-advance after selection
       setTimeout(() => {
         if (currentIndex < totalQuestions - 1) {
           setVisible(false);
@@ -57,9 +52,11 @@ export default function QuestionnairePage() {
             setVisible(true);
           }, 300);
         } else {
-          // All done — go to results
           const allResponses = { ...responses, [question.id]: value };
-          localStorage.setItem("trek-responses", JSON.stringify(allResponses));
+          localStorage.setItem(
+            "trek-responses",
+            JSON.stringify(allResponses)
+          );
           router.push("/results");
         }
       }, 400);
@@ -76,12 +73,12 @@ export default function QuestionnairePage() {
     }, 300);
   }, [currentIndex]);
 
-  // Keyboard shortcuts
+  // Keyboard shortcuts: 1=Yes, 2=Sometimes, 3=No
   useEffect(() => {
     function onKey(e: KeyboardEvent) {
-      if (e.key >= "1" && e.key <= "5") {
-        selectAnswer(parseInt(e.key));
-      }
+      if (e.key === "1") selectAnswer(4);
+      if (e.key === "2") selectAnswer(2);
+      if (e.key === "3") selectAnswer(0);
       if (e.key === "ArrowLeft" || e.key === "Backspace") {
         e.preventDefault();
         goBack();
@@ -91,19 +88,26 @@ export default function QuestionnairePage() {
     return () => window.removeEventListener("keydown", onKey);
   }, [selectAnswer, goBack]);
 
-  if (showDimensionIntro) {
+  // Footprint question count (e.g. "3 of 5")
+  const footprintQuestions = QUESTIONS.filter(
+    (q) => q.footprint === question.footprint
+  );
+  const questionInFootprint =
+    footprintQuestions.findIndex((q) => q.id === question.id) + 1;
+
+  if (showFootprintIntro) {
     return (
       <main className="flex-1 flex flex-col items-center justify-center px-6 text-center">
         <div className="animate-fade-in space-y-4">
-          <span className="text-5xl">{currentDimension.icon}</span>
+          <span className="text-5xl">{currentFootprint.icon}</span>
           <h2
             className="text-3xl md:text-4xl font-bold"
-            style={{ color: currentDimension.color }}
+            style={{ color: currentFootprint.color }}
           >
-            {currentDimension.fullName}
+            {currentFootprint.fullName}
           </h2>
           <p className="text-neutral-400 text-lg max-w-md mx-auto">
-            {currentDimension.description}
+            {currentFootprint.description}
           </p>
         </div>
       </main>
@@ -119,13 +123,14 @@ export default function QuestionnairePage() {
             className="h-full rounded-full transition-all duration-500 ease-out"
             style={{
               width: `${progress}%`,
-              backgroundColor: currentDimension.color,
+              backgroundColor: currentFootprint.color,
             }}
           />
         </div>
         <div className="flex justify-between mt-2 text-xs text-neutral-600">
           <span>
-            {currentDimension.icon} {currentDimension.fullName}
+            {currentFootprint.icon} {currentFootprint.fullName} &middot;{" "}
+            {questionInFootprint} of 5
           </span>
           <span>
             {currentIndex + 1} / {totalQuestions}
@@ -144,35 +149,44 @@ export default function QuestionnairePage() {
             {question.text}
           </p>
 
-          {/* Rating scale */}
+          {/* Answer options: Yes / Sometimes / No */}
           <div className="flex flex-col gap-3 w-full max-w-md mx-auto">
-            {SCALE_LABELS.map((label, i) => {
-              const value = i + 1;
-              const isSelected = responses[question.id] === value;
+            {ANSWER_OPTIONS.map((option, i) => {
+              const isSelected = responses[question.id] === option.value;
+              const colors: Record<number, { border: string; bg: string; text: string }> = {
+                4: { border: "border-green-500", bg: "bg-green-500/10", text: "text-green-400" },
+                2: { border: "border-amber-500", bg: "bg-amber-500/10", text: "text-amber-400" },
+                0: { border: "border-red-500", bg: "bg-red-500/10", text: "text-red-400" },
+              };
+              const c = colors[option.value];
               return (
                 <button
-                  key={value}
-                  onClick={() => selectAnswer(value)}
-                  className={`flex items-center gap-4 px-5 py-3.5 rounded-lg border transition-all text-left ${
+                  key={option.value}
+                  onClick={() => selectAnswer(option.value)}
+                  className={`flex items-center gap-4 px-5 py-4 rounded-lg border transition-all text-left ${
                     isSelected
-                      ? "border-amber-500 bg-amber-500/10 text-amber-400"
+                      ? `${c.border} ${c.bg} ${c.text}`
                       : "border-neutral-800 hover:border-neutral-600 text-neutral-400 hover:text-neutral-200"
                   }`}
                 >
                   <span
                     className={`w-8 h-8 rounded-full border-2 flex items-center justify-center text-sm font-mono shrink-0 ${
                       isSelected
-                        ? "border-amber-500 bg-amber-500 text-black"
+                        ? `${c.border} ${c.text}`
                         : "border-neutral-700"
                     }`}
                   >
-                    {value}
+                    {i + 1}
                   </span>
-                  <span className="text-sm">{label}</span>
+                  <span className="text-base font-medium">{option.label}</span>
                 </button>
               );
             })}
           </div>
+
+          <p className="text-xs text-neutral-700 text-center mt-6">
+            Press 1, 2, or 3 to answer
+          </p>
         </div>
       </div>
 

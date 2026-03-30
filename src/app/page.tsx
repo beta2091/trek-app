@@ -10,12 +10,13 @@ export default function Home() {
         </h1>
 
         <p className="text-lg md:text-xl text-neutral-400 animate-fade-in-up delay-200">
-          Tribe. Resilience. Energy. Knowledge.
+          Trade. Reach. Execute. Kill.
         </p>
 
         <p className="text-base md:text-lg text-neutral-500 max-w-md mx-auto animate-fade-in-up delay-400">
-          A tool built for men ready to look honestly at their lives — and take
-          the next step toward becoming who they were meant to be.
+          A 28-day journey built for men ready to look honestly at their lives —
+          assess your Footprint, build your plan, and become who you were meant
+          to be.
         </p>
 
         <div className="animate-fade-in-up delay-600">

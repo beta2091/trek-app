@@ -59,7 +59,7 @@ const SLIDES: Slide[] = [
   {
     text: "That\u2019s what TREK is.",
     subtext:
-      "An honest look at four dimensions of your life \u2014 Tribe, Resilience, Energy, and Knowledge.",
+      "A 28-day journey across five Footprints of your life \u2014 Faith, Family, Fitness, Finance, and Fulfillment.",
   },
   {
     text: "No judgment. No grades. Just clarity.",

@@ -4,11 +4,13 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import {
-  DIMENSIONS,
+  FOOTPRINTS,
   calculateScores,
-  getRecommendations,
-  type TrekScores,
-  type Recommendation,
+  getBestFootprint,
+  getWorstFootprints,
+  ACTION_STEPS,
+  type FootprintScores,
+  type Footprint,
 } from "@/lib/trek-data";
 
 function ScoreRing({
@@ -65,8 +67,9 @@ function ScoreRing({
         <div className="absolute inset-0 flex flex-col items-center justify-center">
           <span className="text-lg">{icon}</span>
           <span className="text-lg font-bold" style={{ color }}>
-            {score.toFixed(1)}
+            {score}
           </span>
+          <span className="text-[10px] text-neutral-600">/ {maxScore}</span>
         </div>
       </div>
       <span className="text-sm text-neutral-400">{label}</span>
@@ -74,9 +77,8 @@ function ScoreRing({
   );
 }
 
-function OverallScore({ score }: { score: number }) {
+function OverallScore({ percentage }: { percentage: number }) {
   const [animated, setAnimated] = useState(0);
-  const percentage = (score / 5) * 100;
 
   useEffect(() => {
     const timer = setTimeout(() => setAnimated(percentage), 500);
@@ -112,36 +114,78 @@ function OverallScore({ score }: { score: number }) {
         </svg>
         <div className="absolute inset-0 flex flex-col items-center justify-center">
           <span className="text-3xl font-bold text-amber-500">
-            {score.toFixed(1)}
+            {percentage}%
           </span>
-          <span className="text-xs text-neutral-500">/ 5.0</span>
+          <span className="text-xs text-neutral-500">Footprint Score</span>
         </div>
       </div>
-      <span className="text-neutral-400 font-medium">Overall TREK Score</span>
     </div>
   );
 }
 
-function RecommendationCard({ rec }: { rec: Recommendation }) {
-  const dim = DIMENSIONS.find((d) => d.key === rec.dimension)!;
+function FootprintHighlight({
+  type,
+  footprint,
+  score,
+}: {
+  type: "best" | "worst";
+  footprint: Footprint;
+  score: number;
+}) {
+  const fp = FOOTPRINTS.find((f) => f.key === footprint)!;
+  const steps = ACTION_STEPS[footprint];
+  const borderColor = type === "best" ? "border-green-500/30" : "border-red-500/30";
+
   return (
-    <div className="border border-neutral-800 rounded-xl p-6 space-y-3">
-      <div className="flex items-center gap-3">
-        <span className="text-2xl">{dim.icon}</span>
-        <h3 className="text-lg font-semibold" style={{ color: dim.color }}>
-          {rec.title}
-        </h3>
+    <div className={`border ${borderColor} rounded-xl p-6 space-y-3`}>
+      <div className="flex items-center justify-between">
+        <div className="flex items-center gap-3">
+          <span className="text-2xl">{fp.icon}</span>
+          <div>
+            <h3 className="text-lg font-semibold" style={{ color: fp.color }}>
+              {fp.fullName}
+            </h3>
+            <p className="text-xs text-neutral-600">
+              {type === "best" ? "Your strongest" : "Needs attention"} &middot;{" "}
+              {score}/20
+            </p>
+          </div>
+        </div>
+        <span
+          className={`text-sm font-mono px-2 py-1 rounded ${
+            type === "best"
+              ? "bg-green-500/10 text-green-400"
+              : "bg-red-500/10 text-red-400"
+          }`}
+        >
+          {Math.round((score / 20) * 100)}%
+        </span>
       </div>
-      <p className="text-neutral-400 leading-relaxed">{rec.body}</p>
+      <div className="space-y-1">
+        <p className="text-xs text-neutral-600 uppercase tracking-wide">
+          Suggested action steps
+        </p>
+        <div className="flex flex-wrap gap-2">
+          {steps.slice(0, 4).map((step) => (
+            <span
+              key={step}
+              className="text-xs px-2 py-1 rounded-full border border-neutral-800 text-neutral-500"
+            >
+              {step}
+            </span>
+          ))}
+        </div>
+      </div>
     </div>
   );
 }
 
 export default function ResultsPage() {
   const router = useRouter();
-  const [scores, setScores] = useState<TrekScores | null>(null);
-  const [recs, setRecs] = useState<Recommendation[]>([]);
-  const [showRecs, setShowRecs] = useState(false);
+  const [scores, setScores] = useState<FootprintScores | null>(null);
+  const [best, setBest] = useState<Footprint | null>(null);
+  const [worst, setWorst] = useState<Footprint[]>([]);
+  const [showDetails, setShowDetails] = useState(false);
 
   useEffect(() => {
     const stored = localStorage.getItem("trek-responses");
@@ -152,15 +196,16 @@ export default function ResultsPage() {
     const responses = JSON.parse(stored);
     const s = calculateScores(responses);
     setScores(s);
-    setRecs(getRecommendations(s));
-    setTimeout(() => setShowRecs(true), 1500);
+    setBest(getBestFootprint(s));
+    setWorst(getWorstFootprints(s, 2));
+    setTimeout(() => setShowDetails(true), 1500);
   }, [router]);
 
   if (!scores) {
     return (
       <main className="flex-1 flex items-center justify-center">
         <div className="animate-pulse text-neutral-500">
-          Calculating your results...
+          Calculating your Footprint...
         </div>
       </main>
     );
@@ -171,7 +216,9 @@ export default function ResultsPage() {
       <div className="max-w-2xl w-full mx-auto space-y-12">
         {/* Header */}
         <div className="text-center space-y-2 animate-fade-in">
-          <h1 className="text-3xl md:text-4xl font-bold">Your TREK Results</h1>
+          <h1 className="text-3xl md:text-4xl font-bold">
+            Your Footprint Assessment
+          </h1>
           <p className="text-neutral-500">
             Here&apos;s where you stand. No judgment — just clarity.
           </p>
@@ -179,36 +226,37 @@ export default function ResultsPage() {
 
         {/* Overall Score */}
         <div className="flex justify-center animate-fade-in delay-200">
-          <OverallScore score={scores.overall} />
+          <OverallScore percentage={scores.percentage} />
         </div>
 
-        {/* Dimension Scores */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 justify-items-center animate-fade-in delay-400">
-          {DIMENSIONS.map((dim) => (
+        {/* Footprint Scores */}
+        <div className="grid grid-cols-3 md:grid-cols-5 gap-4 justify-items-center animate-fade-in delay-400">
+          {FOOTPRINTS.map((fp) => (
             <ScoreRing
-              key={dim.key}
-              score={scores[dim.key]}
-              maxScore={5}
-              color={dim.color}
-              label={dim.fullName}
-              icon={dim.icon}
+              key={fp.key}
+              score={scores[fp.key]}
+              maxScore={20}
+              color={fp.color}
+              label={fp.fullName}
+              icon={fp.icon}
+              size={100}
             />
           ))}
         </div>
 
-        {/* Score Bar Chart */}
+        {/* Bar Chart */}
         <div className="space-y-4 animate-fade-in delay-600">
-          {DIMENSIONS.map((dim) => {
-            const score = scores[dim.key];
-            const pct = (score / 5) * 100;
+          {FOOTPRINTS.map((fp) => {
+            const score = scores[fp.key];
+            const pct = (score / 20) * 100;
             return (
-              <div key={dim.key} className="space-y-1">
+              <div key={fp.key} className="space-y-1">
                 <div className="flex justify-between text-sm">
                   <span className="text-neutral-400">
-                    {dim.icon} {dim.fullName}
+                    {fp.icon} {fp.fullName}
                   </span>
-                  <span style={{ color: dim.color }}>
-                    {score.toFixed(1)} / 5.0
+                  <span style={{ color: fp.color }}>
+                    {score} / 20
                   </span>
                 </div>
                 <div className="h-3 bg-neutral-800 rounded-full overflow-hidden">
@@ -216,7 +264,7 @@ export default function ResultsPage() {
                     className="h-full rounded-full transition-all duration-1000 ease-out"
                     style={{
                       width: `${pct}%`,
-                      backgroundColor: dim.color,
+                      backgroundColor: fp.color,
                     }}
                   />
                 </div>
@@ -225,55 +273,49 @@ export default function ResultsPage() {
           })}
         </div>
 
-        {/* Recommendations */}
-        {showRecs && (
+        {/* Best & Worst Highlights */}
+        {showDetails && best && (
           <div className="space-y-6 animate-fade-in">
             <div className="text-center">
-              <h2 className="text-2xl font-semibold">
-                Your Top Areas to Focus On
-              </h2>
+              <h2 className="text-2xl font-semibold">Your TREK Focus Areas</h2>
               <p className="text-neutral-500 mt-1">
-                Start here. Small, intentional moves compound over time.
+                Reach higher with your best. Execute on your weakest.
               </p>
             </div>
 
-            <div className="space-y-4">
-              {recs.map((rec) => (
-                <RecommendationCard key={rec.dimension} rec={rec} />
-              ))}
-            </div>
+            <FootprintHighlight
+              type="best"
+              footprint={best}
+              score={scores[best]}
+            />
+            {worst.map((w) => (
+              <FootprintHighlight
+                key={w}
+                type="worst"
+                footprint={w}
+                score={scores[w]}
+              />
+            ))}
           </div>
         )}
 
         {/* Actions */}
         <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4 pb-8 animate-fade-in delay-800">
+          <Link
+            href="/worksheet"
+            className="px-6 py-3 bg-amber-500 text-black font-semibold rounded-lg hover:bg-amber-400 transition-all text-center animate-pulse-glow"
+          >
+            Start Your 28-Day TREK
+          </Link>
           <button
             onClick={() => {
+              const text = `My Footprint Score: ${scores.percentage}% | ${FOOTPRINTS.map(
+                (fp) => `${fp.fullName}: ${scores[fp.key]}/20`
+              ).join(" | ")}`;
               if (navigator.share) {
-                navigator.share({
-                  title: "My TREK Score",
-                  text: `My TREK score is ${scores.overall.toFixed(
-                    1
-                  )}/5.0. T:${scores.tribe.toFixed(
-                    1
-                  )} R:${scores.resilience.toFixed(
-                    1
-                  )} E:${scores.energy.toFixed(
-                    1
-                  )} K:${scores.knowledge.toFixed(1)}`,
-                });
+                navigator.share({ title: "My Footprint Score", text });
               } else {
-                navigator.clipboard.writeText(
-                  `My TREK score: ${scores.overall.toFixed(
-                    1
-                  )}/5.0 | T:${scores.tribe.toFixed(
-                    1
-                  )} R:${scores.resilience.toFixed(
-                    1
-                  )} E:${scores.energy.toFixed(
-                    1
-                  )} K:${scores.knowledge.toFixed(1)}`
-                );
+                navigator.clipboard.writeText(text);
                 alert("Score copied to clipboard!");
               }
             }}
@@ -285,7 +327,7 @@ export default function ResultsPage() {
             href="/"
             className="px-6 py-3 border border-neutral-800 rounded-lg text-neutral-500 hover:text-neutral-300 transition-all text-center"
           >
-            Retake TREK
+            Retake Assessment
           </Link>
         </div>
       </div>
