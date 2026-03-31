@@ -134,11 +134,11 @@ function BreathingExercise({ onComplete }: { onComplete: () => void }) {
       {/* Breathing circle */}
       <div className="relative flex items-center justify-center w-48 h-48">
         <div
-          className={`absolute w-48 h-48 rounded-full border border-amber-500/30 bg-amber-500/5 transition-transform ease-in-out ${circleDuration} ${circleScale}`}
+          className={`absolute w-48 h-48 rounded-full border border-brand-primary/30 bg-brand-primary/5 transition-transform ease-in-out ${circleDuration} ${circleScale}`}
           style={{ transformOrigin: "center" }}
         />
         <div
-          className={`absolute w-32 h-32 rounded-full border border-amber-500/20 bg-amber-500/10 transition-transform ease-in-out ${circleDuration} ${circleScale}`}
+          className={`absolute w-32 h-32 rounded-full border border-brand-primary/20 bg-brand-primary/10 transition-transform ease-in-out ${circleDuration} ${circleScale}`}
         />
       </div>
 
@@ -184,7 +184,7 @@ function DaysCounter() {
               min={10}
               max={100}
               placeholder="Age"
-              className="w-20 px-4 py-3 bg-transparent border border-neutral-700 rounded-lg text-center text-xl text-neutral-200 focus:border-amber-500 focus:outline-none transition-colors [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+              className="w-20 px-4 py-3 bg-transparent border border-brand-border rounded-lg text-center text-xl text-neutral-200 focus:border-brand-primary focus:outline-none transition-colors [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
               onKeyDown={(e) => {
                 if (e.key === "Enter") {
                   const val = parseInt((e.target as HTMLInputElement).value);
@@ -200,7 +200,7 @@ function DaysCounter() {
                 const val = parseInt(inputRef.current?.value || "0");
                 if (val >= 10 && val <= 100) setAge(val);
               }}
-              className="px-4 py-3 border border-neutral-700 rounded-lg text-neutral-400 hover:border-amber-500 hover:text-amber-500 transition-all text-sm"
+              className="px-4 py-3 border border-brand-border rounded-lg text-neutral-400 hover:border-brand-primary hover:text-brand-primary transition-all text-sm"
             >
               Enter
             </button>
@@ -212,14 +212,14 @@ function DaysCounter() {
         >
           {/* Progress bar of life */}
           <div className="max-w-xs mx-auto">
-            <div className="h-2 bg-neutral-800 rounded-full overflow-hidden">
+            <div className="h-2 bg-brand-surface rounded-full overflow-hidden">
               <div
-                className="h-full bg-amber-500 rounded-full transition-all duration-1000 ease-out"
+                className="h-full bg-brand-primary rounded-full transition-all duration-1000 ease-out"
                 style={{ width: `${percentUsed}%` }}
               />
             </div>
           </div>
-          <p className="text-amber-500 text-lg font-medium">
+          <p className="text-brand-primary text-lg font-medium">
             {daysLived.toLocaleString()} days spent
           </p>
           <p className="text-neutral-400 text-sm">
@@ -247,7 +247,7 @@ export default function JourneyPage() {
   const bgStyle =
     phase === "narrative" || phase === "commit"
       ? {
-          background: `radial-gradient(ellipse at 50% 50%, rgba(245, 158, 11, ${0.03 + narrativeProgress * 0.04}) 0%, #0a0a0a 70%)`,
+          background: `radial-gradient(ellipse at 50% 50%, rgba(184, 134, 11, ${0.03 + narrativeProgress * 0.04}) 0%, #1A1410 70%)`,
           transition: "background 1.5s ease",
         }
       : {};
@@ -306,7 +306,7 @@ export default function JourneyPage() {
           </p>
           <button
             onClick={() => setPhase("breathe")}
-            className="animate-fade-in delay-800 mt-6 px-8 py-4 border border-neutral-700 text-neutral-300 rounded-lg text-lg hover:border-amber-500 hover:text-amber-500 transition-all"
+            className="animate-fade-in delay-800 mt-6 px-8 py-4 border border-brand-border text-neutral-300 rounded-lg text-lg hover:border-brand-primary hover:text-brand-primary transition-all"
           >
             I&apos;m ready
           </button>
@@ -333,7 +333,7 @@ export default function JourneyPage() {
         className="flex-1 flex flex-col items-center justify-center px-6 text-center"
         style={{
           background:
-            "radial-gradient(ellipse at 50% 50%, rgba(245, 158, 11, 0.08) 0%, #0a0a0a 70%)",
+            "radial-gradient(ellipse at 50% 50%, rgba(184, 134, 11, 0.08) 0%, #1A1410 70%)",
         }}
       >
         <div className="max-w-lg space-y-8 animate-fade-in">
@@ -346,7 +346,7 @@ export default function JourneyPage() {
           </p>
           <button
             onClick={() => router.push("/questionnaire")}
-            className="mt-4 px-10 py-4 bg-amber-500 text-black font-semibold rounded-lg text-lg hover:bg-amber-400 transition-all animate-pulse-glow"
+            className="mt-4 px-10 py-4 bg-brand-primary text-black font-semibold rounded-lg text-lg hover:bg-brand-primary-light transition-all animate-pulse-glow"
           >
             Begin TREK
           </button>
@@ -396,10 +396,10 @@ export default function JourneyPage() {
             key={i}
             className={`w-1.5 h-1.5 rounded-full transition-all duration-300 ${
               i === slideIndex
-                ? "bg-amber-500 w-4"
+                ? "bg-brand-primary w-4"
                 : i < slideIndex
                   ? "bg-neutral-600"
-                  : "bg-neutral-800"
+                  : "bg-brand-surface"
             }`}
           />
         ))}

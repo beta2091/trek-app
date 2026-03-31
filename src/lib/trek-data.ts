@@ -20,7 +20,7 @@ export const FOOTPRINTS: FootprintInfo[] = [
     label: "F1",
     fullName: "Faith",
     description: "Inner peace, spiritual practice, and values alignment.",
-    color: "#a855f7",
+    color: "#9B7EC8",
     icon: "🙏",
   },
   {
@@ -28,7 +28,7 @@ export const FOOTPRINTS: FootprintInfo[] = [
     label: "F2",
     fullName: "Family",
     description: "Communication, support, bonding, and presence with those closest to you.",
-    color: "#ef4444",
+    color: "#C75B4A",
     icon: "❤️",
   },
   {
@@ -36,7 +36,7 @@ export const FOOTPRINTS: FootprintInfo[] = [
     label: "F3",
     fullName: "Fitness",
     description: "Physical health, energy, exercise, diet, and sleep.",
-    color: "#22c55e",
+    color: "#5D9E4B",
     icon: "💪",
   },
   {
@@ -44,7 +44,7 @@ export const FOOTPRINTS: FootprintInfo[] = [
     label: "F4",
     fullName: "Finance",
     description: "Budgeting, saving, investing, and financial goals.",
-    color: "#3b82f6",
+    color: "#4A7FB5",
     icon: "💰",
   },
   {
@@ -52,7 +52,7 @@ export const FOOTPRINTS: FootprintInfo[] = [
     label: "F5",
     fullName: "Fulfillment",
     description: "Purpose, meaning, growth, and contentment.",
-    color: "#f59e0b",
+    color: "#C4913A",
     icon: "✨",
   },
 ];

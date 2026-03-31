@@ -125,7 +125,7 @@ export default function OptInPage() {
                   value={phone}
                   onChange={(e) => setPhone(e.target.value)}
                   placeholder="(555) 123-4567"
-                  className="w-full px-4 py-3 bg-transparent border border-neutral-700 rounded-lg text-neutral-200 focus:border-amber-500 focus:outline-none transition-colors text-lg"
+                  className="w-full px-4 py-3 bg-transparent border border-brand-border rounded-lg text-neutral-200 focus:border-brand-primary focus:outline-none transition-colors text-lg"
                   autoFocus
                 />
               </div>
@@ -137,7 +137,7 @@ export default function OptInPage() {
                 <select
                   value={timezone}
                   onChange={(e) => setTimezone(e.target.value)}
-                  className="w-full px-4 py-3 bg-[#0a0a0a] border border-neutral-700 rounded-lg text-neutral-200 focus:border-amber-500 focus:outline-none transition-colors"
+                  className="w-full px-4 py-3 bg-[#1A1410] border border-brand-border rounded-lg text-neutral-200 focus:border-brand-primary focus:outline-none transition-colors"
                 >
                   {TIMEZONES.map((tz) => (
                     <option key={tz.value} value={tz.value}>
@@ -156,8 +156,8 @@ export default function OptInPage() {
                 disabled={loading || phone.replace(/\D/g, "").length < 10}
                 className={`w-full py-3 rounded-lg font-semibold transition-all ${
                   loading || phone.replace(/\D/g, "").length < 10
-                    ? "bg-neutral-800 text-neutral-500 cursor-not-allowed"
-                    : "bg-amber-500 text-black hover:bg-amber-400"
+                    ? "bg-brand-surface text-neutral-500 cursor-not-allowed"
+                    : "bg-brand-primary text-black hover:bg-brand-primary-light"
                 }`}
               >
                 {loading ? "Sending..." : "Send verification code"}
@@ -194,7 +194,7 @@ export default function OptInPage() {
                   setCode(e.target.value.replace(/\D/g, "").slice(0, 6))
                 }
                 placeholder="000000"
-                className="w-full px-4 py-4 bg-transparent border border-neutral-700 rounded-lg text-neutral-200 focus:border-amber-500 focus:outline-none transition-colors text-2xl text-center tracking-[0.5em] font-mono"
+                className="w-full px-4 py-4 bg-transparent border border-brand-border rounded-lg text-neutral-200 focus:border-brand-primary focus:outline-none transition-colors text-2xl text-center tracking-[0.5em] font-mono"
                 autoFocus
               />
 
@@ -207,8 +207,8 @@ export default function OptInPage() {
                 disabled={loading || code.length !== 6}
                 className={`w-full py-3 rounded-lg font-semibold transition-all ${
                   loading || code.length !== 6
-                    ? "bg-neutral-800 text-neutral-500 cursor-not-allowed"
-                    : "bg-amber-500 text-black hover:bg-amber-400"
+                    ? "bg-brand-surface text-neutral-500 cursor-not-allowed"
+                    : "bg-brand-primary text-black hover:bg-brand-primary-light"
                 }`}
               >
                 {loading ? "Verifying..." : "Verify"}
@@ -239,7 +239,7 @@ export default function OptInPage() {
               </p>
             </div>
 
-            <div className="border border-neutral-800 rounded-xl p-4 text-left space-y-2">
+            <div className="border border-brand-border rounded-xl p-4 text-left space-y-2">
               <p className="text-sm text-neutral-400">What to expect:</p>
               <ul className="text-sm text-neutral-400 space-y-1">
                 <li>
@@ -259,7 +259,7 @@ export default function OptInPage() {
 
             <button
               onClick={() => router.push("/")}
-              className="w-full py-3 bg-amber-500 text-black font-semibold rounded-lg hover:bg-amber-400 transition-all"
+              className="w-full py-3 bg-brand-primary text-black font-semibold rounded-lg hover:bg-brand-primary-light transition-all"
             >
               Begin your TREK
             </button>

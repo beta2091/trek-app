@@ -13,11 +13,11 @@ interface UserData {
 }
 
 const FOOTPRINTS = [
-  { key: "faith", label: "Faith", icon: "\u{1F64F}", color: "#a855f7" },
-  { key: "family", label: "Family", icon: "\u2764\uFE0F", color: "#ef4444" },
-  { key: "fitness", label: "Fitness", icon: "\u{1F4AA}", color: "#22c55e" },
-  { key: "finance", label: "Finance", icon: "\u{1F4B0}", color: "#3b82f6" },
-  { key: "fulfillment", label: "Fulfillment", icon: "\u2728", color: "#f59e0b" },
+  { key: "faith", label: "Faith", icon: "\u{1F64F}", color: "#9B7EC8" },
+  { key: "family", label: "Family", icon: "\u2764\uFE0F", color: "#C75B4A" },
+  { key: "fitness", label: "Fitness", icon: "\u{1F4AA}", color: "#5D9E4B" },
+  { key: "finance", label: "Finance", icon: "\u{1F4B0}", color: "#4A7FB5" },
+  { key: "fulfillment", label: "Fulfillment", icon: "\u2728", color: "#C4913A" },
 ];
 
 const MOTIVATIONAL = [
@@ -71,7 +71,7 @@ function Slider({
         onChange={(e) => onChange(parseInt(e.target.value))}
         className="w-full h-2 rounded-full appearance-none cursor-pointer"
         style={{
-          background: `linear-gradient(to right, ${footprint.color} 0%, ${footprint.color} ${((value - 1) / 9) * 100}%, #262626 ${((value - 1) / 9) * 100}%, #262626 100%)`,
+          background: `linear-gradient(to right, ${footprint.color} 0%, ${footprint.color} ${((value - 1) / 9) * 100}%, #2A2118 ${((value - 1) / 9) * 100}%, #2A2118 100%)`,
           accentColor: footprint.color,
         }}
       />
@@ -216,9 +216,9 @@ export default function CheckinPage() {
               <span>Day 1</span>
               <span>Day 28</span>
             </div>
-            <div className="h-2 bg-neutral-800 rounded-full overflow-hidden">
+            <div className="h-2 bg-brand-surface rounded-full overflow-hidden">
               <div
-                className="h-full bg-amber-500 rounded-full transition-all"
+                className="h-full bg-brand-primary rounded-full transition-all"
                 style={{ width: `${progressPct}%` }}
               />
             </div>
@@ -252,9 +252,9 @@ export default function CheckinPage() {
           </p>
         )}
         {/* Progress bar */}
-        <div className="h-1.5 bg-neutral-800 rounded-full overflow-hidden mt-3">
+        <div className="h-1.5 bg-brand-surface rounded-full overflow-hidden mt-3">
           <div
-            className="h-full bg-amber-500 rounded-full transition-all"
+            className="h-full bg-brand-primary rounded-full transition-all"
             style={{ width: `${progressPct}%` }}
           />
         </div>
@@ -281,7 +281,7 @@ export default function CheckinPage() {
             onChange={(e) => setNote(e.target.value)}
             rows={3}
             placeholder="Anything on your mind today..."
-            className="w-full px-4 py-3 bg-transparent border border-neutral-700 rounded-lg text-neutral-200 focus:border-amber-500 focus:outline-none transition-colors resize-none text-base"
+            className="w-full px-4 py-3 bg-transparent border border-brand-border rounded-lg text-neutral-200 focus:border-brand-primary focus:outline-none transition-colors resize-none text-base"
           />
         </div>
       </div>
@@ -298,8 +298,8 @@ export default function CheckinPage() {
           disabled={submitting}
           className={`w-full py-4 rounded-xl font-semibold text-lg transition-all ${
             submitting
-              ? "bg-neutral-800 text-neutral-500 cursor-not-allowed"
-              : "bg-amber-500 text-black hover:bg-amber-400 active:scale-[0.98]"
+              ? "bg-brand-surface text-neutral-500 cursor-not-allowed"
+              : "bg-brand-primary text-black hover:bg-brand-primary-light active:scale-[0.98]"
           }`}
         >
           {submitting ? "Saving..." : "Log Check-In"}

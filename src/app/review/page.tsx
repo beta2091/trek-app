@@ -67,7 +67,7 @@ export default function ReviewPage() {
                   <span className="text-neutral-300 text-sm font-medium">
                     {area.label}
                   </span>
-                  <span className="text-amber-500 font-mono text-sm">
+                  <span className="text-brand-primary font-mono text-sm">
                     {review.grades[area.key] || "—"}/10
                   </span>
                 </div>
@@ -78,11 +78,11 @@ export default function ReviewPage() {
                       onClick={() => setGrade(area.key, n)}
                       className={`flex-1 min-h-[44px] rounded text-xs font-mono transition-all ${
                         review.grades[area.key] === n
-                          ? "bg-amber-500 text-black font-bold"
+                          ? "bg-brand-primary text-black font-bold"
                           : review.grades[area.key] > 0 &&
                               n <= review.grades[area.key]
-                            ? "bg-amber-500/20 text-amber-400"
-                            : "bg-neutral-800 text-neutral-500 hover:bg-neutral-700"
+                            ? "bg-brand-primary/20 text-brand-primary-light"
+                            : "bg-brand-surface text-neutral-500 hover:bg-brand-border"
                       }`}
                     >
                       {n}
@@ -99,8 +99,8 @@ export default function ReviewPage() {
               disabled={!allGraded}
               className={`px-6 py-3 rounded-lg font-medium transition-all ${
                 allGraded
-                  ? "bg-amber-500 text-black hover:bg-amber-400"
-                  : "bg-neutral-800 text-neutral-500 cursor-not-allowed"
+                  ? "bg-brand-primary text-black hover:bg-brand-primary-light"
+                  : "bg-brand-surface text-neutral-500 cursor-not-allowed"
               }`}
             >
               Next: Reflections
@@ -138,7 +138,7 @@ export default function ReviewPage() {
                     }))
                   }
                   rows={3}
-                  className="w-full px-4 py-3 bg-transparent border border-neutral-700 rounded-lg text-neutral-200 focus:border-amber-500 focus:outline-none transition-colors resize-none text-base"
+                  className="w-full px-4 py-3 bg-transparent border border-brand-border rounded-lg text-neutral-200 focus:border-brand-primary focus:outline-none transition-colors resize-none text-base"
                   placeholder="Take your time..."
                 />
               </div>
@@ -148,7 +148,7 @@ export default function ReviewPage() {
           <div className="flex justify-between pt-4" style={{ paddingBottom: "max(2rem, env(safe-area-inset-bottom, 0px))" }}>
             <button
               onClick={() => setStep("grades")}
-              className="px-6 py-3 border border-neutral-800 rounded-lg text-neutral-400 hover:text-neutral-300 transition-all"
+              className="px-6 py-3 border border-brand-border rounded-lg text-neutral-400 hover:text-neutral-300 transition-all"
             >
               Back
             </button>
@@ -160,8 +160,8 @@ export default function ReviewPage() {
               disabled={!allReflected}
               className={`px-6 py-3 rounded-lg font-medium transition-all ${
                 allReflected
-                  ? "bg-amber-500 text-black hover:bg-amber-400"
-                  : "bg-neutral-800 text-neutral-500 cursor-not-allowed"
+                  ? "bg-brand-primary text-black hover:bg-brand-primary-light"
+                  : "bg-brand-surface text-neutral-500 cursor-not-allowed"
               }`}
             >
               Next: Retake Assessment
@@ -185,13 +185,13 @@ export default function ReviewPage() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               href="/questionnaire"
-              className="px-8 py-4 bg-amber-500 text-black font-semibold rounded-lg text-lg hover:bg-amber-400 transition-all animate-pulse-glow"
+              className="px-8 py-4 bg-brand-primary text-black font-semibold rounded-lg text-lg hover:bg-brand-primary-light transition-all animate-pulse-glow"
             >
               Retake Footprint Assessment
             </Link>
             <Link
               href="/"
-              className="px-6 py-4 border border-neutral-800 rounded-lg text-neutral-400 hover:text-neutral-300 transition-all"
+              className="px-6 py-4 border border-brand-border rounded-lg text-neutral-400 hover:text-neutral-300 transition-all"
             >
               Return Home
             </Link>

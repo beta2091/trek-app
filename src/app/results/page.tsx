@@ -48,7 +48,7 @@ function ScoreRing({
             cy={size / 2}
             r={radius}
             fill="none"
-            stroke="#262626"
+            stroke="#2A2118"
             strokeWidth="8"
           />
           <circle
@@ -94,7 +94,7 @@ function OverallScore({ percentage }: { percentage: number }) {
             cy={80}
             r={68}
             fill="none"
-            stroke="#262626"
+            stroke="#2A2118"
             strokeWidth="10"
           />
           <circle
@@ -102,7 +102,7 @@ function OverallScore({ percentage }: { percentage: number }) {
             cy={80}
             r={68}
             fill="none"
-            stroke="#f59e0b"
+            stroke="#B8860B"
             strokeWidth="10"
             strokeLinecap="round"
             strokeDasharray={2 * Math.PI * 68}
@@ -113,7 +113,7 @@ function OverallScore({ percentage }: { percentage: number }) {
           />
         </svg>
         <div className="absolute inset-0 flex flex-col items-center justify-center">
-          <span className="text-3xl font-bold text-amber-500">
+          <span className="text-3xl font-bold text-brand-primary">
             {percentage}%
           </span>
           <span className="text-xs text-neutral-400">Footprint Score</span>
@@ -169,7 +169,7 @@ function FootprintHighlight({
           {steps.slice(0, 4).map((step) => (
             <span
               key={step}
-              className="text-xs px-2 py-1 rounded-full border border-neutral-800 text-neutral-400"
+              className="text-xs px-2 py-1 rounded-full border border-brand-border text-neutral-400"
             >
               {step}
             </span>
@@ -259,7 +259,7 @@ export default function ResultsPage() {
                     {score} / 20
                   </span>
                 </div>
-                <div className="h-3 bg-neutral-800 rounded-full overflow-hidden">
+                <div className="h-3 bg-brand-surface rounded-full overflow-hidden">
                   <div
                     className="h-full rounded-full transition-all duration-1000 ease-out"
                     style={{
@@ -303,7 +303,7 @@ export default function ResultsPage() {
         <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4 animate-fade-in delay-800" style={{ paddingBottom: "max(2rem, env(safe-area-inset-bottom, 0px))" }}>
           <Link
             href="/worksheet"
-            className="px-6 py-3 bg-amber-500 text-black font-semibold rounded-lg hover:bg-amber-400 transition-all text-center animate-pulse-glow"
+            className="px-6 py-3 bg-brand-primary text-black font-semibold rounded-lg hover:bg-brand-primary-light transition-all text-center animate-pulse-glow"
           >
             Start Your 28-Day TREK
           </Link>
@@ -319,13 +319,13 @@ export default function ResultsPage() {
                 alert("Score copied to clipboard!");
               }
             }}
-            className="px-6 py-3 border border-neutral-700 rounded-lg text-neutral-300 hover:border-amber-500 hover:text-amber-500 transition-all"
+            className="px-6 py-3 border border-brand-border rounded-lg text-neutral-300 hover:border-brand-primary hover:text-brand-primary transition-all"
           >
             Share Results
           </button>
           <Link
             href="/"
-            className="px-6 py-3 border border-neutral-800 rounded-lg text-neutral-400 hover:text-neutral-300 transition-all text-center"
+            className="px-6 py-3 border border-brand-border rounded-lg text-neutral-400 hover:text-neutral-300 transition-all text-center"
           >
             Retake Assessment
           </Link>

@@ -118,7 +118,7 @@ export default function QuestionnairePage() {
     <main className="flex-1 flex flex-col px-6">
       {/* Progress bar */}
       <div className="w-full max-w-2xl mx-auto mt-8">
-        <div className="h-1 bg-neutral-800 rounded-full overflow-hidden">
+        <div className="h-1 bg-brand-surface rounded-full overflow-hidden">
           <div
             className="h-full rounded-full transition-all duration-500 ease-out"
             style={{
@@ -155,7 +155,7 @@ export default function QuestionnairePage() {
               const isSelected = responses[question.id] === option.value;
               const colors: Record<number, { border: string; bg: string; text: string }> = {
                 4: { border: "border-green-500", bg: "bg-green-500/10", text: "text-green-400" },
-                2: { border: "border-amber-500", bg: "bg-amber-500/10", text: "text-amber-400" },
+                2: { border: "border-brand-primary", bg: "bg-brand-primary/10", text: "text-brand-primary-light" },
                 0: { border: "border-red-500", bg: "bg-red-500/10", text: "text-red-400" },
               };
               const c = colors[option.value];
@@ -166,14 +166,14 @@ export default function QuestionnairePage() {
                   className={`flex items-center gap-4 px-5 py-4 rounded-lg border transition-all text-left ${
                     isSelected
                       ? `${c.border} ${c.bg} ${c.text}`
-                      : "border-neutral-800 hover:border-neutral-600 text-neutral-400 hover:text-neutral-200"
+                      : "border-brand-border text-neutral-400 hover:border-neutral-600 hover:text-neutral-200"
                   }`}
                 >
                   <span
                     className={`w-8 h-8 rounded-full border-2 flex items-center justify-center text-sm font-mono shrink-0 ${
                       isSelected
                         ? `${c.border} ${c.text}`
-                        : "border-neutral-700"
+                        : "border-brand-border"
                     }`}
                   >
                     {i + 1}

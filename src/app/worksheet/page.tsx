@@ -69,8 +69,8 @@ function ActionStepPicker({
             onClick={() => onSelect(step)}
             className={`text-sm px-3 py-2 min-h-[44px] rounded-lg border transition-all ${
               selected === step
-                ? "border-amber-500 bg-amber-500/10 text-amber-400"
-                : "border-neutral-800 text-neutral-400 hover:border-neutral-600 hover:text-neutral-300"
+                ? "border-brand-primary bg-brand-primary/10 text-brand-primary-light"
+                : "border-brand-border text-neutral-400 hover:border-neutral-600 hover:text-neutral-300"
             }`}
           >
             {step}
@@ -80,8 +80,8 @@ function ActionStepPicker({
           onClick={() => setShowCustom(!showCustom)}
           className={`text-sm px-3 py-2 min-h-[44px] rounded-lg border transition-all ${
             showCustom
-              ? "border-amber-500 text-amber-400"
-              : "border-neutral-800 text-neutral-500 hover:border-neutral-600"
+              ? "border-brand-primary text-brand-primary-light"
+              : "border-brand-border text-neutral-500 hover:border-neutral-600"
           }`}
         >
           + Custom
@@ -94,7 +94,7 @@ function ActionStepPicker({
             value={custom}
             onChange={(e) => setCustom(e.target.value)}
             placeholder="Be specific and observable..."
-            className="flex-1 px-3 py-2 min-h-[44px] bg-transparent border border-neutral-700 rounded-lg text-base text-neutral-200 focus:border-amber-500 focus:outline-none"
+            className="flex-1 px-3 py-2 min-h-[44px] bg-transparent border border-brand-border rounded-lg text-base text-neutral-200 focus:border-brand-primary focus:outline-none"
           />
           <button
             onClick={() => {
@@ -104,7 +104,7 @@ function ActionStepPicker({
                 setCustom("");
               }
             }}
-            className="px-4 py-2 min-h-[44px] border border-neutral-700 rounded-lg text-sm text-neutral-400 hover:border-amber-500 hover:text-amber-500 transition-all"
+            className="px-4 py-2 min-h-[44px] border border-brand-border rounded-lg text-sm text-neutral-400 hover:border-brand-primary hover:text-brand-primary transition-all"
           >
             Add
           </button>
@@ -224,9 +224,9 @@ export default function WorksheetPage() {
     <main className="flex-1 flex flex-col px-6 py-8 overflow-y-auto">
       {/* Progress */}
       <div className="w-full max-w-2xl mx-auto">
-        <div className="h-1 bg-neutral-800 rounded-full overflow-hidden">
+        <div className="h-1 bg-brand-surface rounded-full overflow-hidden">
           <div
-            className="h-full bg-amber-500 rounded-full transition-all duration-500"
+            className="h-full bg-brand-primary rounded-full transition-all duration-500"
             style={{ width: `${progress}%` }}
           />
         </div>
@@ -258,7 +258,7 @@ export default function WorksheetPage() {
                   onChange={(e) =>
                     setWorksheet((w) => ({ ...w, trekkerName: e.target.value }))
                   }
-                  className="w-full px-4 py-3 bg-transparent border border-neutral-700 rounded-lg text-neutral-200 focus:border-amber-500 focus:outline-none transition-colors"
+                  className="w-full px-4 py-3 bg-transparent border border-brand-border rounded-lg text-neutral-200 focus:border-brand-primary focus:outline-none transition-colors"
                   placeholder="Trekker name"
                 />
               </div>
@@ -275,7 +275,7 @@ export default function WorksheetPage() {
                       trekPartnerName: e.target.value,
                     }))
                   }
-                  className="w-full px-4 py-3 bg-transparent border border-neutral-700 rounded-lg text-neutral-200 focus:border-amber-500 focus:outline-none transition-colors"
+                  className="w-full px-4 py-3 bg-transparent border border-brand-border rounded-lg text-neutral-200 focus:border-brand-primary focus:outline-none transition-colors"
                   placeholder="Your accountability partner"
                 />
               </div>
@@ -303,13 +303,13 @@ export default function WorksheetPage() {
                   onChange={(e) =>
                     setWorksheet((w) => ({ ...w, startDate: e.target.value }))
                   }
-                  className="w-full px-4 py-3 bg-transparent border border-neutral-700 rounded-lg text-neutral-200 focus:border-amber-500 focus:outline-none transition-colors"
+                  className="w-full px-4 py-3 bg-transparent border border-brand-border rounded-lg text-neutral-200 focus:border-brand-primary focus:outline-none transition-colors"
                 />
               </div>
               {worksheet.endDate && (
                 <div className="text-center text-neutral-400">
                   <p className="text-sm">Your TREK ends on</p>
-                  <p className="text-lg font-medium text-amber-500">
+                  <p className="text-lg font-medium text-brand-primary">
                     {new Date(worksheet.endDate + "T00:00:00").toLocaleDateString("en-US", {
                       weekday: "long",
                       month: "long",
@@ -328,7 +328,7 @@ export default function WorksheetPage() {
           <div className="space-y-8 w-full max-w-md animate-fade-in">
             <div className="text-center space-y-2">
               <h2 className="text-2xl font-bold">
-                <span className="text-amber-500">T</span>rade
+                <span className="text-brand-primary">T</span>rade
               </h2>
               <p className="text-neutral-400">
                 Trade a less beneficial use of time for one that serves your
@@ -349,7 +349,7 @@ export default function WorksheetPage() {
                       timeTrade: { ...w.timeTrade, oldHabit: e.target.value },
                     }))
                   }
-                  className="w-full px-4 py-3 bg-transparent border border-neutral-700 rounded-lg text-neutral-200 focus:border-amber-500 focus:outline-none transition-colors"
+                  className="w-full px-4 py-3 bg-transparent border border-brand-border rounded-lg text-neutral-200 focus:border-brand-primary focus:outline-none transition-colors"
                   placeholder="e.g., Scrolling social media for 30 min before bed"
                 />
               </div>
@@ -369,7 +369,7 @@ export default function WorksheetPage() {
                       timeTrade: { ...w.timeTrade, newHabit: e.target.value },
                     }))
                   }
-                  className="w-full px-4 py-3 bg-transparent border border-neutral-700 rounded-lg text-neutral-200 focus:border-amber-500 focus:outline-none transition-colors"
+                  className="w-full px-4 py-3 bg-transparent border border-brand-border rounded-lg text-neutral-200 focus:border-brand-primary focus:outline-none transition-colors"
                   placeholder="e.g., Reading for 30 min before bed"
                 />
               </div>
@@ -382,7 +382,7 @@ export default function WorksheetPage() {
           <div className="space-y-8 w-full max-w-lg animate-fade-in">
             <div className="text-center space-y-2">
               <h2 className="text-2xl font-bold">
-                <span className="text-amber-500">R</span>each
+                <span className="text-brand-primary">R</span>each
               </h2>
               <p className="text-neutral-400">
                 Your strongest Footprint. Create 2 action steps to reach maximum
@@ -438,7 +438,7 @@ export default function WorksheetPage() {
           <div className="space-y-8 w-full max-w-lg animate-fade-in">
             <div className="text-center space-y-2">
               <h2 className="text-2xl font-bold">
-                <span className="text-amber-500">E</span>xecute — Footprint #1
+                <span className="text-brand-primary">E</span>xecute — Footprint #1
               </h2>
               <p className="text-neutral-400">
                 Your weakest Footprint. Create 2 action steps and execute them.
@@ -494,7 +494,7 @@ export default function WorksheetPage() {
           <div className="space-y-8 w-full max-w-lg animate-fade-in">
             <div className="text-center space-y-2">
               <h2 className="text-2xl font-bold">
-                <span className="text-amber-500">E</span>xecute — Footprint #2
+                <span className="text-brand-primary">E</span>xecute — Footprint #2
               </h2>
               <p className="text-neutral-400">
                 Your second weakest Footprint. Create 2 more action steps.
@@ -550,7 +550,7 @@ export default function WorksheetPage() {
           <div className="space-y-8 w-full max-w-md animate-fade-in">
             <div className="text-center space-y-2">
               <h2 className="text-2xl font-bold">
-                <span className="text-amber-500">K</span>ill
+                <span className="text-brand-primary">K</span>ill
               </h2>
               <p className="text-neutral-400">
                 Identify a demon in your life and create a gameplan to kill it in
@@ -571,7 +571,7 @@ export default function WorksheetPage() {
                       kill: { ...w.kill, demon: e.target.value },
                     }))
                   }
-                  className="w-full px-4 py-3 bg-transparent border border-neutral-700 rounded-lg text-neutral-200 focus:border-amber-500 focus:outline-none transition-colors"
+                  className="w-full px-4 py-3 bg-transparent border border-brand-border rounded-lg text-neutral-200 focus:border-brand-primary focus:outline-none transition-colors"
                   placeholder="e.g., Procrastination, negative self-talk, poor diet..."
                 />
               </div>
@@ -588,7 +588,7 @@ export default function WorksheetPage() {
                     }))
                   }
                   rows={4}
-                  className="w-full px-4 py-3 bg-transparent border border-neutral-700 rounded-lg text-neutral-200 focus:border-amber-500 focus:outline-none transition-colors resize-none"
+                  className="w-full px-4 py-3 bg-transparent border border-brand-border rounded-lg text-neutral-200 focus:border-brand-primary focus:outline-none transition-colors resize-none"
                   placeholder="Be specific: what will you do daily to eliminate this demon?"
                 />
               </div>
@@ -609,8 +609,8 @@ export default function WorksheetPage() {
 
             <div className="space-y-4">
               {/* Trade */}
-              <div className="border border-neutral-800 rounded-xl p-4 space-y-2">
-                <h3 className="text-amber-500 font-semibold">T — Trade</h3>
+              <div className="border border-brand-border rounded-xl p-4 space-y-2">
+                <h3 className="text-brand-primary font-semibold">T — Trade</h3>
                 <p className="text-neutral-400 text-sm">
                   <span className="text-red-400 line-through">
                     {worksheet.timeTrade.oldHabit}
@@ -623,8 +623,8 @@ export default function WorksheetPage() {
               </div>
 
               {/* Reach */}
-              <div className="border border-neutral-800 rounded-xl p-4 space-y-2">
-                <h3 className="text-amber-500 font-semibold">
+              <div className="border border-brand-border rounded-xl p-4 space-y-2">
+                <h3 className="text-brand-primary font-semibold">
                   R — Reach ({bestInfo.fullName} {bestInfo.icon})
                 </h3>
                 <ul className="text-neutral-400 text-sm space-y-1">
@@ -635,8 +635,8 @@ export default function WorksheetPage() {
               </div>
 
               {/* Execute */}
-              <div className="border border-neutral-800 rounded-xl p-4 space-y-2">
-                <h3 className="text-amber-500 font-semibold">
+              <div className="border border-brand-border rounded-xl p-4 space-y-2">
+                <h3 className="text-brand-primary font-semibold">
                   E — Execute ({worst1Info.fullName} {worst1Info.icon} &amp;{" "}
                   {worst2Info.fullName} {worst2Info.icon})
                 </h3>
@@ -655,8 +655,8 @@ export default function WorksheetPage() {
               </div>
 
               {/* Kill */}
-              <div className="border border-neutral-800 rounded-xl p-4 space-y-2">
-                <h3 className="text-amber-500 font-semibold">K — Kill</h3>
+              <div className="border border-brand-border rounded-xl p-4 space-y-2">
+                <h3 className="text-brand-primary font-semibold">K — Kill</h3>
                 <p className="text-neutral-400 text-sm">
                   <span className="font-medium text-neutral-300">Demon:</span>{" "}
                   {worksheet.kill.demon}
@@ -676,7 +676,7 @@ export default function WorksheetPage() {
         {stepIndex > 0 ? (
           <button
             onClick={goBack}
-            className="px-6 py-3 border border-neutral-800 rounded-lg text-neutral-400 hover:text-neutral-300 transition-all"
+            className="px-6 py-3 border border-brand-border rounded-lg text-neutral-400 hover:text-neutral-300 transition-all"
           >
             Back
           </button>
@@ -686,7 +686,7 @@ export default function WorksheetPage() {
         {step === "summary" ? (
           <button
             onClick={saveTrek}
-            className="px-8 py-3 bg-amber-500 text-black font-semibold rounded-lg hover:bg-amber-400 transition-all"
+            className="px-8 py-3 bg-brand-primary text-black font-semibold rounded-lg hover:bg-brand-primary-light transition-all"
           >
             Save &amp; Begin TREK
           </button>
@@ -696,8 +696,8 @@ export default function WorksheetPage() {
             disabled={!canProceed}
             className={`px-6 py-3 rounded-lg font-medium transition-all ${
               canProceed
-                ? "bg-amber-500 text-black hover:bg-amber-400"
-                : "bg-neutral-800 text-neutral-500 cursor-not-allowed"
+                ? "bg-brand-primary text-black hover:bg-brand-primary-light"
+                : "bg-brand-surface text-neutral-500 cursor-not-allowed"
             }`}
           >
             Next
