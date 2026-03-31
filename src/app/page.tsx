@@ -13,7 +13,7 @@ export default function Home() {
           Trade. Reach. Execute. Kill.
         </p>
 
-        <p className="text-base md:text-lg text-neutral-500 max-w-md mx-auto animate-fade-in-up delay-400">
+        <p className="text-base md:text-lg text-neutral-400 max-w-md mx-auto animate-fade-in-up delay-400">
           A 28-day journey built for men ready to look honestly at their lives —
           assess your Footprint, build your plan, and become who you were meant
           to be.
@@ -28,7 +28,7 @@ export default function Home() {
           </Link>
         </div>
 
-        <p className="text-xs text-neutral-600 animate-fade-in-up delay-800">
+        <p className="text-xs text-neutral-400 animate-fade-in-up delay-800">
           The Bison Tribe
         </p>
       </div>

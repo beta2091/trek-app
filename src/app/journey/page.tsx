@@ -146,7 +146,7 @@ function BreathingExercise({ onComplete }: { onComplete: () => void }) {
         <p className="text-2xl md:text-3xl font-light text-neutral-200 transition-all duration-500">
           {label}
         </p>
-        <p className="text-sm text-neutral-600">
+        <p className="text-sm text-neutral-400">
           {breathCount + 1} of {totalBreaths}
         </p>
       </div>
@@ -176,7 +176,7 @@ function DaysCounter() {
     <div className="mt-8 space-y-6" onClick={(e) => e.stopPropagation()}>
       {age === null ? (
         <div className="flex flex-col items-center gap-4 animate-fade-in">
-          <p className="text-neutral-500 text-sm">How old are you?</p>
+          <p className="text-neutral-400 text-sm">How old are you?</p>
           <div className="flex items-center gap-3">
             <input
               ref={inputRef}
@@ -222,7 +222,7 @@ function DaysCounter() {
           <p className="text-amber-500 text-lg font-medium">
             {daysLived.toLocaleString()} days spent
           </p>
-          <p className="text-neutral-500 text-sm">
+          <p className="text-neutral-400 text-sm">
             ~{daysRemaining.toLocaleString()} remaining
           </p>
         </div>
@@ -299,7 +299,7 @@ export default function JourneyPage() {
           <p className="text-2xl md:text-3xl font-light text-neutral-300 animate-fade-in">
             Find a quiet place.
           </p>
-          <p className="text-lg text-neutral-500 animate-fade-in-slow delay-400">
+          <p className="text-lg text-neutral-400 animate-fade-in-slow delay-400">
             Put your phone on silent. Close the other tabs.
             <br />
             Give yourself the next 10 minutes.
@@ -340,7 +340,7 @@ export default function JourneyPage() {
           <p className="text-3xl md:text-5xl font-light text-neutral-200 leading-tight">
             Are you ready to be honest with yourself?
           </p>
-          <p className="text-neutral-500 text-lg">
+          <p className="text-neutral-400 text-lg">
             This is your starting line. Not a test. Not a score to beat.
             <br />A mirror.
           </p>
@@ -379,7 +379,7 @@ export default function JourneyPage() {
             {slide.text}
           </p>
           {slide.subtext && (
-            <p className="mt-4 text-base md:text-lg text-neutral-500">
+            <p className="mt-4 text-base md:text-lg text-neutral-400">
               {slide.subtext}
             </p>
           )}
@@ -390,7 +390,7 @@ export default function JourneyPage() {
       </div>
 
       {/* Progress dots */}
-      <div className="fixed bottom-8 left-1/2 -translate-x-1/2 flex gap-1.5">
+      <div className="fixed left-1/2 -translate-x-1/2 flex gap-1.5" style={{ bottom: "calc(2rem + env(safe-area-inset-bottom, 0px))" }}>
         {SLIDES.map((_, i) => (
           <div
             key={i}
@@ -406,7 +406,7 @@ export default function JourneyPage() {
       </div>
 
       {/* Navigation hint */}
-      <div className="fixed bottom-16 left-1/2 -translate-x-1/2 text-xs text-neutral-700">
+      <div className="fixed left-1/2 -translate-x-1/2 text-xs text-neutral-500" style={{ bottom: "calc(4rem + env(safe-area-inset-bottom, 0px))" }}>
         tap to continue
       </div>
 
@@ -417,7 +417,8 @@ export default function JourneyPage() {
             e.stopPropagation();
             goPrev();
           }}
-          className="fixed left-6 top-1/2 -translate-y-1/2 text-neutral-700 hover:text-neutral-400 transition-colors text-2xl"
+          className="fixed top-1/2 -translate-y-1/2 min-w-[44px] min-h-[44px] flex items-center justify-center text-neutral-500 hover:text-neutral-400 transition-colors text-2xl"
+          style={{ left: "calc(1.5rem + env(safe-area-inset-left, 0px))" }}
           aria-label="Previous"
         >
           &larr;

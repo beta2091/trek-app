@@ -75,7 +75,7 @@ function Slider({
           accentColor: footprint.color,
         }}
       />
-      <div className="flex justify-between text-[10px] text-neutral-600">
+      <div className="flex justify-between text-[10px] text-neutral-400">
         <span>Struggling</span>
         <span>Crushing it</span>
       </div>
@@ -164,7 +164,7 @@ export default function CheckinPage() {
   if (loading) {
     return (
       <main className="flex-1 flex items-center justify-center px-6">
-        <div className="text-neutral-500 animate-pulse">Loading...</div>
+        <div className="text-neutral-400 animate-pulse">Loading...</div>
       </main>
     );
   }
@@ -175,7 +175,7 @@ export default function CheckinPage() {
       <main className="flex-1 flex items-center justify-center px-6">
         <div className="text-center space-y-3">
           <p className="text-red-400">{loadError}</p>
-          <p className="text-sm text-neutral-600">
+          <p className="text-sm text-neutral-400">
             This check-in link may be invalid or expired.
           </p>
         </div>
@@ -189,7 +189,7 @@ export default function CheckinPage() {
       <main className="flex-1 flex items-center justify-center px-6">
         <div className="text-center space-y-3">
           <p className="text-neutral-400">Your TREK hasn&apos;t started yet.</p>
-          <p className="text-sm text-neutral-600">
+          <p className="text-sm text-neutral-400">
             Complete the TREK worksheet to set your start date.
           </p>
         </div>
@@ -212,7 +212,7 @@ export default function CheckinPage() {
           <p className="text-neutral-400 italic">&ldquo;{quote}&rdquo;</p>
 
           <div className="space-y-2">
-            <div className="flex justify-between text-xs text-neutral-600">
+            <div className="flex justify-between text-xs text-neutral-400">
               <span>Day 1</span>
               <span>Day 28</span>
             </div>
@@ -222,7 +222,7 @@ export default function CheckinPage() {
                 style={{ width: `${progressPct}%` }}
               />
             </div>
-            <p className="text-sm text-neutral-500">
+            <p className="text-sm text-neutral-400">
               Day {trekDay} of 28 &mdash;{" "}
               {28 - trekDay > 0
                 ? `${28 - trekDay} days remaining`
@@ -239,15 +239,15 @@ export default function CheckinPage() {
     <main className="flex-1 flex flex-col px-6 py-6 max-w-lg mx-auto w-full">
       {/* Header */}
       <div className="text-center space-y-2 mb-6">
-        <p className="text-xs text-neutral-600 uppercase tracking-widest">
+        <p className="text-xs text-neutral-400 uppercase tracking-widest">
           TREK Check-In
         </p>
         <h1 className="text-xl font-bold">
           Day {trekDay}{" "}
-          <span className="text-neutral-600 font-normal">of 28</span>
+          <span className="text-neutral-400 font-normal">of 28</span>
         </h1>
         {user?.name && (
-          <p className="text-sm text-neutral-500">
+          <p className="text-sm text-neutral-400">
             How did yesterday go, {user.name}?
           </p>
         )}
@@ -273,21 +273,21 @@ export default function CheckinPage() {
 
         {/* Note */}
         <div className="pt-2">
-          <label className="text-sm text-neutral-500 block mb-1">
-            Notes <span className="text-neutral-700">(optional)</span>
+          <label className="text-sm text-neutral-400 block mb-1">
+            Notes <span className="text-neutral-500">(optional)</span>
           </label>
           <textarea
             value={note}
             onChange={(e) => setNote(e.target.value)}
             rows={3}
             placeholder="Anything on your mind today..."
-            className="w-full px-4 py-3 bg-transparent border border-neutral-700 rounded-lg text-neutral-200 focus:border-amber-500 focus:outline-none transition-colors resize-none text-sm"
+            className="w-full px-4 py-3 bg-transparent border border-neutral-700 rounded-lg text-neutral-200 focus:border-amber-500 focus:outline-none transition-colors resize-none text-base"
           />
         </div>
       </div>
 
       {/* Submit */}
-      <div className="pt-4 pb-2">
+      <div className="pt-4" style={{ paddingBottom: "max(0.5rem, env(safe-area-inset-bottom, 0px))" }}>
         {submitError && (
           <p className="text-red-400 text-sm text-center mb-3">
             {submitError}
@@ -298,7 +298,7 @@ export default function CheckinPage() {
           disabled={submitting}
           className={`w-full py-4 rounded-xl font-semibold text-lg transition-all ${
             submitting
-              ? "bg-neutral-800 text-neutral-600 cursor-not-allowed"
+              ? "bg-neutral-800 text-neutral-500 cursor-not-allowed"
               : "bg-amber-500 text-black hover:bg-amber-400 active:scale-[0.98]"
           }`}
         >

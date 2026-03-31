@@ -109,7 +109,7 @@ export default function OptInPage() {
             <div className="text-center space-y-3">
               <div className="text-4xl">&#128242;</div>
               <h2 className="text-2xl font-bold">Stay on track.</h2>
-              <p className="text-neutral-500">
+              <p className="text-neutral-400">
                 Get a daily check-in text during your 28-day TREK. Rate your 5
                 Footprints in under 30 seconds.
               </p>
@@ -117,7 +117,7 @@ export default function OptInPage() {
 
             <div className="space-y-4">
               <div>
-                <label className="text-sm text-neutral-500 block mb-1">
+                <label className="text-sm text-neutral-400 block mb-1">
                   Phone number
                 </label>
                 <input
@@ -131,7 +131,7 @@ export default function OptInPage() {
               </div>
 
               <div>
-                <label className="text-sm text-neutral-500 block mb-1">
+                <label className="text-sm text-neutral-400 block mb-1">
                   Your timezone
                 </label>
                 <select
@@ -156,7 +156,7 @@ export default function OptInPage() {
                 disabled={loading || phone.replace(/\D/g, "").length < 10}
                 className={`w-full py-3 rounded-lg font-semibold transition-all ${
                   loading || phone.replace(/\D/g, "").length < 10
-                    ? "bg-neutral-800 text-neutral-600 cursor-not-allowed"
+                    ? "bg-neutral-800 text-neutral-500 cursor-not-allowed"
                     : "bg-amber-500 text-black hover:bg-amber-400"
                 }`}
               >
@@ -165,7 +165,7 @@ export default function OptInPage() {
 
               <button
                 onClick={() => router.push("/")}
-                className="w-full py-3 text-neutral-600 hover:text-neutral-400 text-sm transition-colors"
+                className="w-full py-3 text-neutral-500 hover:text-neutral-400 text-sm transition-colors"
               >
                 Skip for now
               </button>
@@ -178,7 +178,7 @@ export default function OptInPage() {
             <div className="text-center space-y-3">
               <div className="text-4xl">&#128172;</div>
               <h2 className="text-2xl font-bold">Enter your code.</h2>
-              <p className="text-neutral-500">
+              <p className="text-neutral-400">
                 We sent a 6-digit code to{" "}
                 <span className="text-neutral-300">{phone}</span>
               </p>
@@ -207,7 +207,7 @@ export default function OptInPage() {
                 disabled={loading || code.length !== 6}
                 className={`w-full py-3 rounded-lg font-semibold transition-all ${
                   loading || code.length !== 6
-                    ? "bg-neutral-800 text-neutral-600 cursor-not-allowed"
+                    ? "bg-neutral-800 text-neutral-500 cursor-not-allowed"
                     : "bg-amber-500 text-black hover:bg-amber-400"
                 }`}
               >
@@ -220,7 +220,7 @@ export default function OptInPage() {
                   setError("");
                   setStep("phone");
                 }}
-                className="w-full py-3 text-neutral-600 hover:text-neutral-400 text-sm transition-colors"
+                className="w-full py-3 text-neutral-500 hover:text-neutral-400 text-sm transition-colors"
               >
                 Use a different number
               </button>
@@ -233,14 +233,14 @@ export default function OptInPage() {
             <div className="space-y-3">
               <div className="text-5xl">&#9989;</div>
               <h2 className="text-2xl font-bold">You&apos;re all set.</h2>
-              <p className="text-neutral-500">
+              <p className="text-neutral-400">
                 You&apos;ll get a daily text each morning during your TREK with a
                 link to log your check-in. It takes less than 30 seconds.
               </p>
             </div>
 
             <div className="border border-neutral-800 rounded-xl p-4 text-left space-y-2">
-              <p className="text-sm text-neutral-500">What to expect:</p>
+              <p className="text-sm text-neutral-400">What to expect:</p>
               <ul className="text-sm text-neutral-400 space-y-1">
                 <li>
                   &#8226; Daily SMS between 7-9 AM in your timezone

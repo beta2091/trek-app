@@ -55,7 +55,7 @@ export default function ReviewPage() {
         <div className="max-w-2xl mx-auto w-full space-y-8">
           <div className="text-center space-y-2 animate-fade-in">
             <h1 className="text-3xl font-bold">Post-TREK Review</h1>
-            <p className="text-neutral-500">
+            <p className="text-neutral-400">
               Grade yourself 1-10 on each focus area. Be honest.
             </p>
           </div>
@@ -76,13 +76,13 @@ export default function ReviewPage() {
                     <button
                       key={n}
                       onClick={() => setGrade(area.key, n)}
-                      className={`flex-1 py-2 rounded text-xs font-mono transition-all ${
+                      className={`flex-1 min-h-[44px] rounded text-xs font-mono transition-all ${
                         review.grades[area.key] === n
                           ? "bg-amber-500 text-black font-bold"
                           : review.grades[area.key] > 0 &&
                               n <= review.grades[area.key]
                             ? "bg-amber-500/20 text-amber-400"
-                            : "bg-neutral-800 text-neutral-600 hover:bg-neutral-700"
+                            : "bg-neutral-800 text-neutral-500 hover:bg-neutral-700"
                       }`}
                     >
                       {n}
@@ -93,14 +93,14 @@ export default function ReviewPage() {
             ))}
           </div>
 
-          <div className="flex justify-end pt-4 pb-8">
+          <div className="flex justify-end pt-4" style={{ paddingBottom: "max(2rem, env(safe-area-inset-bottom, 0px))" }}>
             <button
               onClick={() => setStep("reflections")}
               disabled={!allGraded}
               className={`px-6 py-3 rounded-lg font-medium transition-all ${
                 allGraded
                   ? "bg-amber-500 text-black hover:bg-amber-400"
-                  : "bg-neutral-800 text-neutral-600 cursor-not-allowed"
+                  : "bg-neutral-800 text-neutral-500 cursor-not-allowed"
               }`}
             >
               Next: Reflections
@@ -118,7 +118,7 @@ export default function ReviewPage() {
         <div className="max-w-2xl mx-auto w-full space-y-8">
           <div className="text-center space-y-2 animate-fade-in">
             <h1 className="text-3xl font-bold">Reflect</h1>
-            <p className="text-neutral-500">
+            <p className="text-neutral-400">
               Take a moment to think deeply about your 28-day journey.
             </p>
           </div>
@@ -138,17 +138,17 @@ export default function ReviewPage() {
                     }))
                   }
                   rows={3}
-                  className="w-full px-4 py-3 bg-transparent border border-neutral-700 rounded-lg text-neutral-200 focus:border-amber-500 focus:outline-none transition-colors resize-none text-sm"
+                  className="w-full px-4 py-3 bg-transparent border border-neutral-700 rounded-lg text-neutral-200 focus:border-amber-500 focus:outline-none transition-colors resize-none text-base"
                   placeholder="Take your time..."
                 />
               </div>
             ))}
           </div>
 
-          <div className="flex justify-between pt-4 pb-8">
+          <div className="flex justify-between pt-4" style={{ paddingBottom: "max(2rem, env(safe-area-inset-bottom, 0px))" }}>
             <button
               onClick={() => setStep("grades")}
-              className="px-6 py-3 border border-neutral-800 rounded-lg text-neutral-500 hover:text-neutral-300 transition-all"
+              className="px-6 py-3 border border-neutral-800 rounded-lg text-neutral-400 hover:text-neutral-300 transition-all"
             >
               Back
             </button>
@@ -161,7 +161,7 @@ export default function ReviewPage() {
               className={`px-6 py-3 rounded-lg font-medium transition-all ${
                 allReflected
                   ? "bg-amber-500 text-black hover:bg-amber-400"
-                  : "bg-neutral-800 text-neutral-600 cursor-not-allowed"
+                  : "bg-neutral-800 text-neutral-500 cursor-not-allowed"
               }`}
             >
               Next: Retake Assessment
@@ -178,7 +178,7 @@ export default function ReviewPage() {
       <main className="flex-1 flex flex-col items-center justify-center px-6 text-center">
         <div className="max-w-lg space-y-8 animate-fade-in">
           <h1 className="text-3xl font-bold">Retake Your Footprint</h1>
-          <p className="text-neutral-500 text-lg">
+          <p className="text-neutral-400 text-lg">
             Now retake the Footprint Assessment to compare your before and after
             scores. See how 28 days of intentional living moved the needle.
           </p>
@@ -191,12 +191,12 @@ export default function ReviewPage() {
             </Link>
             <Link
               href="/"
-              className="px-6 py-4 border border-neutral-800 rounded-lg text-neutral-500 hover:text-neutral-300 transition-all"
+              className="px-6 py-4 border border-neutral-800 rounded-lg text-neutral-400 hover:text-neutral-300 transition-all"
             >
               Return Home
             </Link>
           </div>
-          <p className="text-xs text-neutral-600">
+          <p className="text-xs text-neutral-400">
             Rejoin your group and discuss in the next coaching session.
           </p>
         </div>

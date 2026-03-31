@@ -69,7 +69,7 @@ function ScoreRing({
           <span className="text-lg font-bold" style={{ color }}>
             {score}
           </span>
-          <span className="text-[10px] text-neutral-600">/ {maxScore}</span>
+          <span className="text-[10px] text-neutral-400">/ {maxScore}</span>
         </div>
       </div>
       <span className="text-sm text-neutral-400">{label}</span>
@@ -116,7 +116,7 @@ function OverallScore({ percentage }: { percentage: number }) {
           <span className="text-3xl font-bold text-amber-500">
             {percentage}%
           </span>
-          <span className="text-xs text-neutral-500">Footprint Score</span>
+          <span className="text-xs text-neutral-400">Footprint Score</span>
         </div>
       </div>
     </div>
@@ -145,7 +145,7 @@ function FootprintHighlight({
             <h3 className="text-lg font-semibold" style={{ color: fp.color }}>
               {fp.fullName}
             </h3>
-            <p className="text-xs text-neutral-600">
+            <p className="text-xs text-neutral-400">
               {type === "best" ? "Your strongest" : "Needs attention"} &middot;{" "}
               {score}/20
             </p>
@@ -162,14 +162,14 @@ function FootprintHighlight({
         </span>
       </div>
       <div className="space-y-1">
-        <p className="text-xs text-neutral-600 uppercase tracking-wide">
+        <p className="text-xs text-neutral-400 uppercase tracking-wide">
           Suggested action steps
         </p>
         <div className="flex flex-wrap gap-2">
           {steps.slice(0, 4).map((step) => (
             <span
               key={step}
-              className="text-xs px-2 py-1 rounded-full border border-neutral-800 text-neutral-500"
+              className="text-xs px-2 py-1 rounded-full border border-neutral-800 text-neutral-400"
             >
               {step}
             </span>
@@ -204,7 +204,7 @@ export default function ResultsPage() {
   if (!scores) {
     return (
       <main className="flex-1 flex items-center justify-center">
-        <div className="animate-pulse text-neutral-500">
+        <div className="animate-pulse text-neutral-400">
           Calculating your Footprint...
         </div>
       </main>
@@ -219,7 +219,7 @@ export default function ResultsPage() {
           <h1 className="text-3xl md:text-4xl font-bold">
             Your Footprint Assessment
           </h1>
-          <p className="text-neutral-500">
+          <p className="text-neutral-400">
             Here&apos;s where you stand. No judgment — just clarity.
           </p>
         </div>
@@ -278,7 +278,7 @@ export default function ResultsPage() {
           <div className="space-y-6 animate-fade-in">
             <div className="text-center">
               <h2 className="text-2xl font-semibold">Your TREK Focus Areas</h2>
-              <p className="text-neutral-500 mt-1">
+              <p className="text-neutral-400 mt-1">
                 Reach higher with your best. Execute on your weakest.
               </p>
             </div>
@@ -300,7 +300,7 @@ export default function ResultsPage() {
         )}
 
         {/* Actions */}
-        <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4 pb-8 animate-fade-in delay-800">
+        <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4 animate-fade-in delay-800" style={{ paddingBottom: "max(2rem, env(safe-area-inset-bottom, 0px))" }}>
           <Link
             href="/worksheet"
             className="px-6 py-3 bg-amber-500 text-black font-semibold rounded-lg hover:bg-amber-400 transition-all text-center animate-pulse-glow"
@@ -325,7 +325,7 @@ export default function ResultsPage() {
           </button>
           <Link
             href="/"
-            className="px-6 py-3 border border-neutral-800 rounded-lg text-neutral-500 hover:text-neutral-300 transition-all text-center"
+            className="px-6 py-3 border border-neutral-800 rounded-lg text-neutral-400 hover:text-neutral-300 transition-all text-center"
           >
             Retake Assessment
           </Link>

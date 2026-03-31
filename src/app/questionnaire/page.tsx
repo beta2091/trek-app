@@ -127,7 +127,7 @@ export default function QuestionnairePage() {
             }}
           />
         </div>
-        <div className="flex justify-between mt-2 text-xs text-neutral-600">
+        <div className="flex justify-between mt-2 text-xs text-neutral-400">
           <span>
             {currentFootprint.icon} {currentFootprint.fullName} &middot;{" "}
             {questionInFootprint} of 5
@@ -184,7 +184,7 @@ export default function QuestionnairePage() {
             })}
           </div>
 
-          <p className="text-xs text-neutral-700 text-center mt-6">
+          <p className="text-xs text-neutral-500 text-center mt-6">
             Press 1, 2, or 3 to answer
           </p>
         </div>
@@ -194,7 +194,8 @@ export default function QuestionnairePage() {
       {currentIndex > 0 && (
         <button
           onClick={goBack}
-          className="fixed left-6 top-1/2 -translate-y-1/2 text-neutral-700 hover:text-neutral-400 transition-colors text-2xl"
+          className="fixed top-1/2 -translate-y-1/2 min-w-[44px] min-h-[44px] flex items-center justify-center text-neutral-500 hover:text-neutral-400 transition-colors text-2xl"
+          style={{ left: "calc(1.5rem + env(safe-area-inset-left, 0px))" }}
           aria-label="Previous question"
         >
           &larr;

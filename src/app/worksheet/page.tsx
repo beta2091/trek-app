@@ -61,16 +61,16 @@ function ActionStepPicker({
 
   return (
     <div className="space-y-2">
-      <p className="text-sm text-neutral-500">{label}</p>
+      <p className="text-sm text-neutral-400">{label}</p>
       <div className="flex flex-wrap gap-2">
         {steps.map((step) => (
           <button
             key={step}
             onClick={() => onSelect(step)}
-            className={`text-sm px-3 py-2 rounded-lg border transition-all ${
+            className={`text-sm px-3 py-2 min-h-[44px] rounded-lg border transition-all ${
               selected === step
                 ? "border-amber-500 bg-amber-500/10 text-amber-400"
-                : "border-neutral-800 text-neutral-500 hover:border-neutral-600 hover:text-neutral-300"
+                : "border-neutral-800 text-neutral-400 hover:border-neutral-600 hover:text-neutral-300"
             }`}
           >
             {step}
@@ -78,10 +78,10 @@ function ActionStepPicker({
         ))}
         <button
           onClick={() => setShowCustom(!showCustom)}
-          className={`text-sm px-3 py-2 rounded-lg border transition-all ${
+          className={`text-sm px-3 py-2 min-h-[44px] rounded-lg border transition-all ${
             showCustom
               ? "border-amber-500 text-amber-400"
-              : "border-neutral-800 text-neutral-600 hover:border-neutral-600"
+              : "border-neutral-800 text-neutral-500 hover:border-neutral-600"
           }`}
         >
           + Custom
@@ -94,7 +94,7 @@ function ActionStepPicker({
             value={custom}
             onChange={(e) => setCustom(e.target.value)}
             placeholder="Be specific and observable..."
-            className="flex-1 px-3 py-2 bg-transparent border border-neutral-700 rounded-lg text-sm text-neutral-200 focus:border-amber-500 focus:outline-none"
+            className="flex-1 px-3 py-2 min-h-[44px] bg-transparent border border-neutral-700 rounded-lg text-base text-neutral-200 focus:border-amber-500 focus:outline-none"
           />
           <button
             onClick={() => {
@@ -104,7 +104,7 @@ function ActionStepPicker({
                 setCustom("");
               }
             }}
-            className="px-4 py-2 border border-neutral-700 rounded-lg text-sm text-neutral-400 hover:border-amber-500 hover:text-amber-500 transition-all"
+            className="px-4 py-2 min-h-[44px] border border-neutral-700 rounded-lg text-sm text-neutral-400 hover:border-amber-500 hover:text-amber-500 transition-all"
           >
             Add
           </button>
@@ -211,12 +211,17 @@ export default function WorksheetPage() {
     router.push("/opt-in");
   }
 
+  // Scroll to top when step changes so content isn't hidden
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, [step]);
+
   const bestInfo = FOOTPRINTS.find((f) => f.key === worksheet.reach.footprint)!;
   const worst1Info = FOOTPRINTS.find((f) => f.key === worksheet.execute.footprint1)!;
   const worst2Info = FOOTPRINTS.find((f) => f.key === worksheet.execute.footprint2)!;
 
   return (
-    <main className="flex-1 flex flex-col px-6 py-8">
+    <main className="flex-1 flex flex-col px-6 py-8 overflow-y-auto">
       {/* Progress */}
       <div className="w-full max-w-2xl mx-auto">
         <div className="h-1 bg-neutral-800 rounded-full overflow-hidden">
@@ -225,7 +230,7 @@ export default function WorksheetPage() {
             style={{ width: `${progress}%` }}
           />
         </div>
-        <div className="flex justify-between mt-2 text-xs text-neutral-600">
+        <div className="flex justify-between mt-2 text-xs text-neutral-400">
           <span>TREK Worksheet</span>
           <span>{STEP_LABELS[step]}</span>
         </div>
@@ -237,14 +242,14 @@ export default function WorksheetPage() {
           <div className="space-y-8 w-full max-w-md animate-fade-in">
             <div className="text-center space-y-2">
               <h2 className="text-2xl font-bold">Never trek alone.</h2>
-              <p className="text-neutral-500">
+              <p className="text-neutral-400">
                 You need a Trek Partner — someone to hold you accountable for 28
                 days.
               </p>
             </div>
             <div className="space-y-4">
               <div>
-                <label className="text-sm text-neutral-500 block mb-1">
+                <label className="text-sm text-neutral-400 block mb-1">
                   Your name
                 </label>
                 <input
@@ -258,7 +263,7 @@ export default function WorksheetPage() {
                 />
               </div>
               <div>
-                <label className="text-sm text-neutral-500 block mb-1">
+                <label className="text-sm text-neutral-400 block mb-1">
                   Trek Partner name
                 </label>
                 <input
@@ -283,13 +288,13 @@ export default function WorksheetPage() {
           <div className="space-y-8 w-full max-w-md animate-fade-in">
             <div className="text-center space-y-2">
               <h2 className="text-2xl font-bold">Set your 28-day window.</h2>
-              <p className="text-neutral-500">
+              <p className="text-neutral-400">
                 Pick a start date. Your TREK ends exactly 28 days later.
               </p>
             </div>
             <div className="space-y-4">
               <div>
-                <label className="text-sm text-neutral-500 block mb-1">
+                <label className="text-sm text-neutral-400 block mb-1">
                   Start date
                 </label>
                 <input
@@ -325,14 +330,14 @@ export default function WorksheetPage() {
               <h2 className="text-2xl font-bold">
                 <span className="text-amber-500">T</span>rade
               </h2>
-              <p className="text-neutral-500">
+              <p className="text-neutral-400">
                 Trade a less beneficial use of time for one that serves your
                 core values.
               </p>
             </div>
             <div className="space-y-4">
               <div>
-                <label className="text-sm text-neutral-500 block mb-1">
+                <label className="text-sm text-neutral-400 block mb-1">
                   Old habit (what you&apos;re giving up)
                 </label>
                 <input
@@ -349,10 +354,10 @@ export default function WorksheetPage() {
                 />
               </div>
               <div className="flex justify-center">
-                <span className="text-neutral-700 text-2xl">&darr;</span>
+                <span className="text-neutral-500 text-2xl">&darr;</span>
               </div>
               <div>
-                <label className="text-sm text-neutral-500 block mb-1">
+                <label className="text-sm text-neutral-400 block mb-1">
                   New habit (what you&apos;re replacing it with)
                 </label>
                 <input
@@ -379,7 +384,7 @@ export default function WorksheetPage() {
               <h2 className="text-2xl font-bold">
                 <span className="text-amber-500">R</span>each
               </h2>
-              <p className="text-neutral-500">
+              <p className="text-neutral-400">
                 Your strongest Footprint. Create 2 action steps to reach maximum
                 performance.
               </p>
@@ -391,7 +396,7 @@ export default function WorksheetPage() {
                 <p className="font-semibold" style={{ color: bestInfo.color }}>
                   {bestInfo.fullName}
                 </p>
-                <p className="text-xs text-neutral-500">
+                <p className="text-xs text-neutral-400">
                   Your strongest Footprint
                 </p>
               </div>
@@ -435,7 +440,7 @@ export default function WorksheetPage() {
               <h2 className="text-2xl font-bold">
                 <span className="text-amber-500">E</span>xecute — Footprint #1
               </h2>
-              <p className="text-neutral-500">
+              <p className="text-neutral-400">
                 Your weakest Footprint. Create 2 action steps and execute them.
               </p>
             </div>
@@ -449,7 +454,7 @@ export default function WorksheetPage() {
                 >
                   {worst1Info.fullName}
                 </p>
-                <p className="text-xs text-neutral-500">Needs most attention</p>
+                <p className="text-xs text-neutral-400">Needs most attention</p>
               </div>
             </div>
 
@@ -491,7 +496,7 @@ export default function WorksheetPage() {
               <h2 className="text-2xl font-bold">
                 <span className="text-amber-500">E</span>xecute — Footprint #2
               </h2>
-              <p className="text-neutral-500">
+              <p className="text-neutral-400">
                 Your second weakest Footprint. Create 2 more action steps.
               </p>
             </div>
@@ -505,7 +510,7 @@ export default function WorksheetPage() {
                 >
                   {worst2Info.fullName}
                 </p>
-                <p className="text-xs text-neutral-500">Needs attention</p>
+                <p className="text-xs text-neutral-400">Needs attention</p>
               </div>
             </div>
 
@@ -547,14 +552,14 @@ export default function WorksheetPage() {
               <h2 className="text-2xl font-bold">
                 <span className="text-amber-500">K</span>ill
               </h2>
-              <p className="text-neutral-500">
+              <p className="text-neutral-400">
                 Identify a demon in your life and create a gameplan to kill it in
                 28 days.
               </p>
             </div>
             <div className="space-y-4">
               <div>
-                <label className="text-sm text-neutral-500 block mb-1">
+                <label className="text-sm text-neutral-400 block mb-1">
                   Your demon
                 </label>
                 <input
@@ -571,7 +576,7 @@ export default function WorksheetPage() {
                 />
               </div>
               <div>
-                <label className="text-sm text-neutral-500 block mb-1">
+                <label className="text-sm text-neutral-400 block mb-1">
                   Strategy to kill it
                 </label>
                 <textarea
@@ -596,7 +601,7 @@ export default function WorksheetPage() {
           <div className="space-y-8 w-full max-w-lg animate-fade-in">
             <div className="text-center space-y-2">
               <h2 className="text-2xl font-bold">Your TREK Plan</h2>
-              <p className="text-neutral-500">
+              <p className="text-neutral-400">
                 {worksheet.trekkerName} &amp; {worksheet.trekPartnerName} &middot;{" "}
                 28 days
               </p>
@@ -635,13 +640,13 @@ export default function WorksheetPage() {
                   E — Execute ({worst1Info.fullName} {worst1Info.icon} &amp;{" "}
                   {worst2Info.fullName} {worst2Info.icon})
                 </h3>
-                <p className="text-xs text-neutral-600">{worst1Info.fullName}:</p>
+                <p className="text-xs text-neutral-400">{worst1Info.fullName}:</p>
                 <ul className="text-neutral-400 text-sm space-y-1">
                   {worksheet.execute.actionSteps1.map((s, i) => (
                     <li key={i}>• {s}</li>
                   ))}
                 </ul>
-                <p className="text-xs text-neutral-600 mt-2">{worst2Info.fullName}:</p>
+                <p className="text-xs text-neutral-400 mt-2">{worst2Info.fullName}:</p>
                 <ul className="text-neutral-400 text-sm space-y-1">
                   {worksheet.execute.actionSteps2.map((s, i) => (
                     <li key={i}>• {s}</li>
@@ -667,11 +672,11 @@ export default function WorksheetPage() {
       </div>
 
       {/* Navigation */}
-      <div className="max-w-2xl mx-auto w-full flex justify-between mt-8 pb-4">
+      <div className="max-w-2xl mx-auto w-full flex justify-between mt-8 pb-4" style={{ paddingBottom: "max(1rem, env(safe-area-inset-bottom, 0px))" }}>
         {stepIndex > 0 ? (
           <button
             onClick={goBack}
-            className="px-6 py-3 border border-neutral-800 rounded-lg text-neutral-500 hover:text-neutral-300 transition-all"
+            className="px-6 py-3 border border-neutral-800 rounded-lg text-neutral-400 hover:text-neutral-300 transition-all"
           >
             Back
           </button>
@@ -692,7 +697,7 @@ export default function WorksheetPage() {
             className={`px-6 py-3 rounded-lg font-medium transition-all ${
               canProceed
                 ? "bg-amber-500 text-black hover:bg-amber-400"
-                : "bg-neutral-800 text-neutral-600 cursor-not-allowed"
+                : "bg-neutral-800 text-neutral-500 cursor-not-allowed"
             }`}
           >
             Next
