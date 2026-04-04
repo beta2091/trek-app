@@ -195,9 +195,10 @@ export default function ResultsPage() {
     }
     const responses = JSON.parse(stored);
     const s = calculateScores(responses);
+    const bestFp = getBestFootprint(s);
     setScores(s);
-    setBest(getBestFootprint(s));
-    setWorst(getWorstFootprints(s, 2));
+    setBest(bestFp);
+    setWorst(getWorstFootprints(s, 2, bestFp));
     setTimeout(() => setShowDetails(true), 1500);
   }, [router]);
 

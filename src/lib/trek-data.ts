@@ -152,9 +152,10 @@ export function getBestFootprint(scores: FootprintScores): Footprint {
   return fps.reduce((best, fp) => (scores[fp] > scores[best] ? fp : best));
 }
 
-export function getWorstFootprints(scores: FootprintScores, count: number = 2): Footprint[] {
+export function getWorstFootprints(scores: FootprintScores, count: number = 2, excludeBest?: Footprint): Footprint[] {
   const fps: Footprint[] = ["faith", "family", "fitness", "finance", "fulfillment"];
-  return fps.sort((a, b) => scores[a] - scores[b]).slice(0, count);
+  const filtered = excludeBest ? fps.filter((fp) => fp !== excludeBest) : fps;
+  return [...filtered].sort((a, b) => scores[a] - scores[b]).slice(0, count);
 }
 
 // ── Action Step Menus ────────────────────────────────────────────────

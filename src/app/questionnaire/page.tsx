@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo, useCallback, useEffect } from "react";
+import { useState, useMemo, useCallback, useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
 import {
   QUESTIONS,
@@ -14,6 +14,7 @@ export default function QuestionnairePage() {
   const [responses, setResponses] = useState<Record<string, number>>({});
   const [currentIndex, setCurrentIndex] = useState(0);
   const [visible, setVisible] = useState(true);
+  const isAnimating = useRef(false);
 
   const question = QUESTIONS[currentIndex];
   const totalQuestions = QUESTIONS.length;
@@ -43,6 +44,8 @@ export default function QuestionnairePage() {
 
   const selectAnswer = useCallback(
     (value: number) => {
+      if (isAnimating.current) return;
+      isAnimating.current = true;
       setResponses((prev) => ({ ...prev, [question.id]: value }));
       setTimeout(() => {
         if (currentIndex < totalQuestions - 1) {
@@ -50,6 +53,7 @@ export default function QuestionnairePage() {
           setTimeout(() => {
             setCurrentIndex((i) => i + 1);
             setVisible(true);
+            isAnimating.current = false;
           }, 300);
         } else {
           const allResponses = { ...responses, [question.id]: value };
