@@ -41,6 +41,12 @@ export const dailyCheckins = pgTable(
   ]
 );
 
+export const subscribers = pgTable("subscribers", {
+  id: uuid("id").defaultRandom().primaryKey(),
+  email: text("email").notNull().unique(),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+});
+
 export const smsLogs = pgTable(
   "sms_logs",
   {
