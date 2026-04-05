@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import FounderVideo from "./founder-video";
 
 export default function Home() {
   return (
@@ -151,6 +152,9 @@ export default function Home() {
         }
       `}</style>
     </section>
+
+    {/* SECTION — Meet the Founder (Ken's testimony video) */}
+    <FounderVideo />
 
     {/* SECTION 2 — Who it's for */}
     <section className="relative border-t border-neutral-900 px-6 py-24 md:py-32">
