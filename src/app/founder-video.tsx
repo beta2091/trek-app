@@ -30,7 +30,7 @@ export default function FounderVideo() {
         </div>
 
         {/* Headline */}
-        <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tight text-neutral-100 leading-[1.1] mb-4">
+        <h2 className="text-3xl md:text-5xl font-display font-black uppercase tracking-tight text-neutral-100 leading-[1.1] mb-4">
           The Vision
         </h2>
         <p className="text-base md:text-lg text-neutral-400 max-w-2xl leading-relaxed mb-10">

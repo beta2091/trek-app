@@ -1,18 +1,19 @@
 import Image from "next/image";
 import Link from "next/link";
 import FounderVideo from "./founder-video";
+import NewsletterForm from "./newsletter-form";
 
 export default function Home() {
   return (
     <main className="flex-1 flex flex-col">
     <section className="relative min-h-screen flex flex-col items-center justify-between px-4 py-10 md:py-12 overflow-hidden">
-      {/* Ambient warm glow */}
+      {/* Ambient warm glow — layered for depth */}
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0 -z-10"
         style={{
           background:
-            "radial-gradient(ellipse at 50% 50%, rgba(184,134,11,0.22) 0%, rgba(26,20,16,0) 65%)",
+            "radial-gradient(ellipse at 50% 55%, rgba(184,134,11,0.24) 0%, rgba(160,112,74,0.08) 40%, rgba(26,20,16,0) 70%)",
         }}
       />
 
@@ -100,8 +101,17 @@ export default function Home() {
 
       {/* Wordmark + CTA block */}
       <div className="pb-16 md:pb-20 flex flex-col items-center relative z-10">
+        {/* Brand logo mark */}
+        <div className="mb-5 md:mb-6 animate-fade-in">
+          <img
+            src="/bison-tribe-logo.png"
+            alt="The Bison Tribe"
+            className="w-16 md:w-24 h-auto drop-shadow-[0_0_20px_rgba(184,134,11,0.4)]"
+          />
+        </div>
+
         <h1
-          className="font-black uppercase tracking-[0.02em] text-neutral-100 leading-none text-center animate-fade-in-up"
+          className="font-display font-black uppercase tracking-[0.04em] text-neutral-100 leading-none text-center animate-fade-in-up"
           style={{ fontSize: "clamp(1.75rem, 5vw, 4.5rem)" }}
         >
           The Bison Tribe
@@ -144,7 +154,7 @@ export default function Home() {
       {/* Scene rise-in animation */}
       <style>{`
         .scene-rise {
-          animation: riseIn 1.2s ease-out both;
+          animation: riseIn 1.4s ease-out both;
         }
         @keyframes riseIn {
           from { opacity: 0; transform: translateY(40px) scale(0.97); }
@@ -153,11 +163,18 @@ export default function Home() {
       `}</style>
     </section>
 
+    {/* Tribal chevron divider */}
+    <div className="tribal-divider py-2" aria-hidden>
+      <div className="tribal-chevrons">
+        <span /><span /><span />
+      </div>
+    </div>
+
     {/* SECTION — Meet the Founder (Ken's testimony video) */}
     <FounderVideo />
 
     {/* SECTION 2 — Who it's for */}
-    <section className="relative border-t border-neutral-900 px-6 py-24 md:py-32">
+    <section className="relative border-t border-brand-border/30 px-6 py-24 md:py-32">
       <div className="w-full max-w-3xl mx-auto">
         {/* Eyebrow */}
         <div className="flex items-center gap-4 mb-10">
@@ -168,7 +185,7 @@ export default function Home() {
         </div>
 
         {/* Headline */}
-        <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tight text-neutral-100 leading-[1.1]">
+        <h2 className="text-3xl md:text-5xl font-display font-black uppercase tracking-tight text-neutral-100 leading-[1.1]">
           Who refuses
           <br />
           <span className="text-brand-primary">to drift.</span>
@@ -214,10 +231,10 @@ export default function Home() {
 
         {/* Close */}
         <div className="mt-14 md:mt-16 max-w-xl">
-          <p className="text-lg md:text-2xl text-neutral-100 font-medium leading-snug">
+          <p className="text-lg md:text-2xl text-neutral-100 font-display font-medium leading-snug">
             You don&rsquo;t need another system.
           </p>
-          <p className="text-lg md:text-2xl text-brand-primary font-medium leading-snug mt-1">
+          <p className="text-lg md:text-2xl text-brand-primary font-display font-medium leading-snug mt-1">
             You need a tribe that walks into the storm with you.
           </p>
         </div>
@@ -242,13 +259,13 @@ export default function Home() {
       id="footprints"
       className="relative border-t border-neutral-900 px-6 py-24 md:py-32 overflow-hidden"
     >
-      {/* Subtle diagonal hoofprint trail backdrop */}
+      {/* Diagonal hoofprint trail backdrop — paired prints for realism */}
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-0 -z-10 opacity-[0.04]"
+        className="pointer-events-none absolute inset-0 -z-10 opacity-[0.07]"
         style={{
           backgroundImage:
-            "radial-gradient(circle at 8% 90%, #D4A84B 3px, transparent 4px), radial-gradient(circle at 24% 72%, #D4A84B 3px, transparent 4px), radial-gradient(circle at 42% 54%, #D4A84B 3px, transparent 4px), radial-gradient(circle at 60% 36%, #D4A84B 3px, transparent 4px), radial-gradient(circle at 78% 18%, #D4A84B 3px, transparent 4px), radial-gradient(circle at 92% 4%, #D4A84B 3px, transparent 4px)",
+            "radial-gradient(circle at 6% 92%, #D4A84B 3px, transparent 4px), radial-gradient(circle at 10% 88%, #D4A84B 2px, transparent 3px), radial-gradient(circle at 22% 74%, #D4A84B 3px, transparent 4px), radial-gradient(circle at 26% 70%, #D4A84B 2px, transparent 3px), radial-gradient(circle at 40% 56%, #D4A84B 3px, transparent 4px), radial-gradient(circle at 44% 52%, #D4A84B 2px, transparent 3px), radial-gradient(circle at 58% 38%, #D4A84B 3px, transparent 4px), radial-gradient(circle at 62% 34%, #D4A84B 2px, transparent 3px), radial-gradient(circle at 76% 20%, #D4A84B 3px, transparent 4px), radial-gradient(circle at 80% 16%, #D4A84B 2px, transparent 3px), radial-gradient(circle at 92% 6%, #D4A84B 3px, transparent 4px), radial-gradient(circle at 96% 2%, #D4A84B 2px, transparent 3px)",
         }}
       />
 
@@ -262,7 +279,7 @@ export default function Home() {
         </div>
 
         {/* Headline */}
-        <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tight text-neutral-100 leading-[1.1]">
+        <h2 className="text-3xl md:text-5xl font-display font-black uppercase tracking-tight text-neutral-100 leading-[1.1]">
           Five marks.
           <br />
           <span className="text-brand-primary">One path.</span>
@@ -312,7 +329,7 @@ export default function Home() {
                 {n}
               </span>
               <div>
-                <h3 className="text-2xl md:text-4xl font-black uppercase tracking-tight text-neutral-100 leading-none group-hover:text-brand-primary transition-colors">
+                <h3 className="text-2xl md:text-4xl font-display font-black uppercase tracking-tight text-neutral-100 leading-none group-hover:text-brand-primary transition-colors">
                   {name}
                 </h3>
                 <p
@@ -345,8 +362,14 @@ export default function Home() {
     {/* SECTION 4 — The TREK Method */}
     <section
       id="trek"
-      className="relative border-t border-neutral-900 px-6 py-24 md:py-32"
+      className="relative border-t border-neutral-900 px-6 py-24 md:py-32 overflow-hidden"
     >
+      {/* Storm atmosphere layer */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 -z-10 storm-atmosphere"
+      />
+
       <div className="w-full max-w-6xl mx-auto">
         {/* Eyebrow */}
         <div className="flex items-center gap-4 mb-10">
@@ -357,7 +380,7 @@ export default function Home() {
         </div>
 
         {/* Headline */}
-        <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tight text-neutral-100 leading-[1.1]">
+        <h2 className="text-3xl md:text-5xl font-display font-black uppercase tracking-tight text-neutral-100 leading-[1.1]">
           Twenty-eight days.
           <br />
           <span className="text-brand-primary">Four moves.</span>
@@ -407,7 +430,7 @@ export default function Home() {
             >
               {/* Giant letter */}
               <div className="flex flex-col">
-                <span className="text-6xl md:text-8xl font-black text-brand-primary leading-none group-hover:text-brand-primary-light transition-colors">
+                <span className="text-5xl md:text-8xl font-display font-black text-brand-primary leading-none group-hover:text-brand-primary-light transition-colors">
                   {letter}
                 </span>
               </div>
@@ -423,7 +446,7 @@ export default function Home() {
                     {word}
                   </span>
                 </div>
-                <h3 className="text-xl md:text-3xl font-black uppercase tracking-tight text-neutral-100 leading-tight">
+                <h3 className="text-xl md:text-3xl font-display font-black uppercase tracking-tight text-neutral-100 leading-tight">
                   {headline}
                 </h3>
                 <p
@@ -453,7 +476,7 @@ export default function Home() {
 
         {/* Closing + CTA */}
         <div className="mt-14 md:mt-16 flex flex-col md:flex-row md:items-end md:justify-between gap-6">
-          <p className="text-lg md:text-2xl text-neutral-100 font-medium leading-snug max-w-md">
+          <p className="text-lg md:text-2xl text-neutral-100 font-display font-medium leading-snug max-w-md">
             Not a program. A trek.{" "}
             <span className="text-brand-primary">Walked, not watched.</span>
           </p>
@@ -466,6 +489,13 @@ export default function Home() {
         </div>
       </div>
     </section>
+
+    {/* Tribal chevron divider */}
+    <div className="tribal-divider py-2" aria-hidden>
+      <div className="tribal-chevrons">
+        <span /><span /><span />
+      </div>
+    </div>
 
     {/* SECTION 5 — Into the Storm Podcast */}
     <section
@@ -484,7 +514,7 @@ export default function Home() {
         {/* Split headline layout */}
         <div className="grid md:grid-cols-[1.2fr_1fr] gap-10 md:gap-16 items-end">
           <div>
-            <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tight text-neutral-100 leading-[1.1]">
+            <h2 className="text-3xl md:text-5xl font-display font-black uppercase tracking-tight text-neutral-100 leading-[1.1]">
               Into the
               <br />
               <span className="text-brand-primary">Storm.</span>
@@ -618,7 +648,7 @@ export default function Home() {
         {/* 2-col intro */}
         <div className="grid md:grid-cols-[1.2fr_1fr] gap-10 md:gap-16 items-end">
           <div>
-            <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tight text-neutral-100 leading-[1.1]">
+            <h2 className="text-3xl md:text-5xl font-display font-black uppercase tracking-tight text-neutral-100 leading-[1.1]">
               Same trek.
               <br />
               <span className="text-brand-primary">In the arena.</span>
@@ -671,10 +701,10 @@ export default function Home() {
               className="bg-neutral-950 p-8 md:p-10 hover:bg-neutral-900 transition-colors group"
             >
               <div className="flex items-baseline gap-5">
-                <span className="text-5xl md:text-6xl font-black text-brand-primary leading-none group-hover:text-brand-primary-light transition-colors">
+                <span className="text-5xl md:text-6xl font-display font-black text-brand-primary leading-none group-hover:text-brand-primary-light transition-colors">
                   {letter}
                 </span>
-                <span className="text-xl md:text-2xl font-black uppercase tracking-tight text-neutral-100">
+                <span className="text-xl md:text-2xl font-display font-black uppercase tracking-tight text-neutral-100">
                   {word}
                 </span>
               </div>
@@ -688,7 +718,7 @@ export default function Home() {
 
         {/* Closing + CTA */}
         <div className="mt-14 md:mt-16 flex flex-col md:flex-row md:items-end md:justify-between gap-6">
-          <p className="text-lg md:text-2xl text-neutral-100 font-medium leading-snug max-w-lg">
+          <p className="text-lg md:text-2xl text-neutral-100 font-display font-medium leading-snug max-w-lg">
             Your life is your trek.{" "}
             <span className="text-brand-primary">Your craft is the arena.</span>
           </p>
@@ -707,11 +737,94 @@ export default function Home() {
       </div>
     </section>
 
-    {/* SECTION 7 — Footer with Herd Note signup */}
+    {/* SECTION 7 — Join the Tribe */}
+    <section
+      id="join"
+      className="relative border-t border-neutral-900 px-6 py-24 md:py-32 overflow-hidden"
+    >
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 -z-10"
+        style={{
+          background:
+            "radial-gradient(ellipse at 50% 60%, rgba(184,134,11,0.12) 0%, rgba(26,20,16,0) 70%)",
+        }}
+      />
+
+      <div className="w-full max-w-3xl mx-auto text-center">
+        <div className="flex items-center justify-center gap-4 mb-10">
+          <div className="w-12 h-px bg-brand-primary/50" />
+          <p className="text-[10px] md:text-xs tracking-[0.4em] text-brand-primary uppercase">
+            The Invitation
+          </p>
+          <div className="w-12 h-px bg-brand-primary/50" />
+        </div>
+
+        <h2 className="text-3xl md:text-5xl font-display font-black uppercase tracking-tight text-neutral-100 leading-[1.1]">
+          Join the <span className="text-brand-primary">Tribe.</span>
+        </h2>
+
+        <p className="text-base md:text-lg text-neutral-300 mt-8 max-w-xl mx-auto leading-relaxed">
+          This isn&rsquo;t a sales pitch. It&rsquo;s a campfire. A circle of men
+          who decided drifting wasn&rsquo;t an option. Your seat is waiting.
+        </p>
+
+        <div className="mt-10">
+          <Link
+            href="/journey"
+            className="inline-flex items-center justify-center px-10 py-4 bg-brand-primary text-black font-semibold uppercase tracking-[0.15em] text-sm rounded-sm hover:bg-brand-primary-light transition-colors"
+          >
+            Begin Your TREK
+          </Link>
+        </div>
+
+        <div className="mt-16 grid grid-cols-1 sm:grid-cols-3 gap-px bg-neutral-800 border border-neutral-800">
+          <a
+            href="https://www.youtube.com/@IntotheStormPodcast-TBT"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group bg-neutral-950 p-6 md:p-8 hover:bg-neutral-900 transition-colors flex flex-col items-center gap-3"
+          >
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className="text-brand-primary">
+              <path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19.1c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.35 29 29 0 0 0-.46-5.33z" fill="currentColor" fillOpacity="0.2" stroke="currentColor" strokeWidth="1.5"/>
+              <path d="m9.75 15.02 5.75-3.27-5.75-3.27v6.54z" fill="currentColor"/>
+            </svg>
+            <span className="text-[10px] tracking-[0.3em] text-neutral-500 uppercase">Podcast</span>
+            <span className="text-sm font-semibold text-neutral-200 group-hover:text-brand-primary transition-colors">Into the Storm</span>
+          </a>
+
+          <a
+            href="#herd-note"
+            className="group bg-neutral-950 p-6 md:p-8 hover:bg-neutral-900 transition-colors flex flex-col items-center gap-3"
+          >
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className="text-brand-primary">
+              <rect x="2" y="4" width="20" height="16" rx="2" fill="currentColor" fillOpacity="0.2" stroke="currentColor" strokeWidth="1.5"/>
+              <path d="m2 7 10 6 10-6" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round"/>
+            </svg>
+            <span className="text-[10px] tracking-[0.3em] text-neutral-500 uppercase">Newsletter</span>
+            <span className="text-sm font-semibold text-neutral-200 group-hover:text-brand-primary transition-colors">The Herd Note</span>
+          </a>
+
+          <a
+            href="mailto:ken@berealsalestraining.com"
+            className="group bg-neutral-950 p-6 md:p-8 hover:bg-neutral-900 transition-colors flex flex-col items-center gap-3"
+          >
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className="text-brand-primary">
+              <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z" fill="currentColor" fillOpacity="0.2" stroke="currentColor" strokeWidth="1.5"/>
+              <path d="M12 16v-4m0-4h.01" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+            </svg>
+            <span className="text-[10px] tracking-[0.3em] text-neutral-500 uppercase">Contact</span>
+            <span className="text-sm font-semibold text-neutral-200 group-hover:text-brand-primary transition-colors">Reach Ken</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    {/* SECTION 8 — Footer with Herd Note signup */}
     <footer className="relative border-t border-neutral-900 px-6 pt-24 pb-10 md:pt-32 md:pb-12">
       <div className="w-full max-w-6xl mx-auto">
         {/* Newsletter signup */}
-        <div className="grid md:grid-cols-[1.2fr_1fr] gap-10 md:gap-16 items-end pb-16 md:pb-20 border-b border-neutral-900">
+        <div id="herd-note" className="grid md:grid-cols-[1.2fr_1fr] gap-10 md:gap-16 items-end pb-16 md:pb-20 border-b border-neutral-900">
           <div>
             {/* Eyebrow */}
             <div className="flex items-center gap-4 mb-6">
@@ -720,7 +833,7 @@ export default function Home() {
                 The Herd Note
               </p>
             </div>
-            <h3 className="text-2xl md:text-4xl font-black uppercase tracking-tight text-neutral-100 leading-[1.1]">
+            <h3 className="text-2xl md:text-4xl font-display font-black uppercase tracking-tight text-neutral-100 leading-[1.1]">
               One note. <span className="text-brand-primary">Every Sunday.</span>
             </h3>
             <p className="text-sm md:text-base text-neutral-400 mt-5 max-w-md leading-relaxed">
@@ -729,52 +842,24 @@ export default function Home() {
             </p>
           </div>
 
-          {/* TODO: wire up to /api/subscribe or Mailchimp/ConvertKit/Beehiiv */}
-          <form
-            action="/api/subscribe"
-            method="post"
-            className="flex flex-col gap-3"
-          >
-            <label
-              htmlFor="herd-email"
-              className="text-[10px] tracking-[0.3em] text-neutral-500 uppercase"
-            >
-              Email
-            </label>
-            <div className="flex flex-col sm:flex-row gap-3">
-              <input
-                id="herd-email"
-                type="email"
-                name="email"
-                required
-                placeholder="you@domain.com"
-                className="flex-1 px-4 py-3 bg-neutral-950 border border-neutral-800 text-neutral-100 placeholder:text-neutral-600 focus:outline-none focus:border-brand-primary transition-colors rounded-sm text-sm"
-              />
-              <button
-                type="submit"
-                className="inline-flex items-center justify-center px-6 py-3 bg-brand-primary text-black font-semibold uppercase tracking-[0.15em] text-xs rounded-sm hover:bg-brand-primary-light transition-colors whitespace-nowrap"
-              >
-                Join the Herd
-              </button>
-            </div>
-          </form>
+          <NewsletterForm />
         </div>
 
         {/* Footer grid */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-10 md:gap-8 pt-16 md:pt-20">
           {/* Brand */}
           <div className="col-span-2 md:col-span-1">
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-4">
               <img
                 src="/bison-tribe-logo.png"
                 alt="The Bison Tribe"
-                className="w-12 h-auto"
+                className="w-16 md:w-20 h-auto drop-shadow-[0_0_12px_rgba(184,134,11,0.25)]"
               />
               <div className="flex flex-col">
-                <span className="text-xs font-black uppercase tracking-widest text-neutral-100">
+                <span className="text-sm font-display font-black uppercase tracking-widest text-neutral-100">
                   The Bison Tribe
                 </span>
-                <span className="text-[9px] tracking-[0.3em] text-brand-primary/70 uppercase mt-0.5">
+                <span className="text-[9px] tracking-[0.3em] text-brand-primary/70 uppercase mt-1">
                   Into the Storm
                 </span>
               </div>
